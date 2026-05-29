@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+	/* HP-inspired theme tokens (from DESIGN.md) */
+	--hp-primary: #024ad8;
+	--hp-primary-bright: #296ef9;
+	--hp-primary-deep: #0e3191;
+	--hp-primary-soft: #c9e0fc;
+
+	--hp-ink: #1a1a1a;
+	--hp-ink-deep: #000000;
+	--hp-ink-soft: #292929;
+	--hp-on-ink: #ffffff;
+
+	--hp-canvas: #ffffff;
+	--hp-paper: #ffffff;
+	--hp-cloud: #f7f7f7;
+	--hp-fog: #e8e8e8;
+
+	--hp-steel: #c2c2c2;
+	--hp-graphite: #636363;
+	--hp-charcoal: #3d3d3d;
+	--hp-hairline: #e8e8e8;
+
+	/* Typography: prefer Forma DJR Micro if available; fall back gracefully */
+	--hp-font-sans: "Forma DJR Micro", var(--font-geist-sans), Arial, sans-serif;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	background: var(--hp-canvas);
+	color: var(--hp-ink);
+	font-family: var(--hp-font-sans);
+}
+
+a {
+	color: var(--hp-primary);
+}
+
+@keyframes hp-chevron-float {
+	0% {
+		transform: translate3d(0, -4px, 0);
+	}
+	50% {
+		transform: translate3d(0, 4px, 0);
+	}
+	100% {
+		transform: translate3d(0, -4px, 0);
+	}
+}
+
+@keyframes hp-scan {
+	to {
+		background-position: 48px 0;
+	}
+}
