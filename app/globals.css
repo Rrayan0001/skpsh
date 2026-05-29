@@ -7,6 +7,12 @@
 	--hp-primary-deep: #0e3191;
 	--hp-primary-soft: #c9e0fc;
 
+	--hp-bloom-coral: #ff5050;
+	--hp-bloom-rose: #f9d4d2;
+	--hp-storm-mist: #8ebdce;
+	--hp-storm-sea: #7fadbe;
+	--hp-storm-deep: #356373;
+
 	--hp-ink: #1a1a1a;
 	--hp-ink-deep: #000000;
 	--hp-ink-soft: #292929;
@@ -56,5 +62,26 @@ a {
 @keyframes hp-scan {
 	to {
 		background-position: 48px 0;
+	}
+}
+
+@keyframes hp-shimmer {
+	0% {
+		transform: translate3d(-30%, 0, 0);
+	}
+	100% {
+		transform: translate3d(130%, 0, 0);
+	}
+}
+
+@keyframes hp-loader-dot {
+	0% {
+		transform: translate3d(0%, 0, 0) scale(1);
+	}
+	50% {
+		transform: translate3d(580%, 0, 0) scale(1.05);
+	}
+	100% {
+		transform: translate3d(0%, 0, 0) scale(1);
 	}
 }
