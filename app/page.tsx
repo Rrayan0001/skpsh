@@ -1,62 +1,52 @@
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-slate-50 text-[var(--hp-ink)] overflow-hidden flex flex-col">
-      {/* Animated Background Orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-400/30 blur-[100px] motion-safe:animate-[orb-float_12s_infinite_alternate]" />
-        <div className="absolute top-[20%] right-[-10%] w-[40%] h-[60%] rounded-full bg-pink-400/20 blur-[120px] motion-safe:animate-[orb-float_15s_infinite_alternate-reverse]" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[60%] h-[40%] rounded-full bg-cyan-400/30 blur-[100px] motion-safe:animate-[orb-float_18s_infinite_alternate]" />
-        <div className="absolute top-[40%] left-[40%] w-[30%] h-[30%] rounded-full bg-purple-400/20 blur-[110px] motion-safe:animate-[orb-float_14s_infinite_alternate]" />
-      </div>
-
-      <div className="h-10 bg-[linear-gradient(90deg,var(--hp-ink),var(--hp-primary-deep))] text-[var(--hp-on-ink)] relative z-20">
-        <div className="mx-auto max-w-6xl h-full px-6 flex items-center justify-center">
+    <div className="min-h-screen bg-[var(--hp-canvas)] text-[var(--hp-ink)]">
+      <div className="h-10 bg-[linear-gradient(90deg,var(--hp-ink),var(--hp-primary-deep))] text-[var(--hp-on-ink)]">
+        <div className="mx-auto max-w-5xl h-full px-4 sm:px-6 flex items-center justify-center">
           <p className="text-[12px] tracking-wide text-center">
             We&apos;re building something new — launching soon.
           </p>
         </div>
       </div>
 
-      <main className="flex-1 flex flex-col items-center justify-center px-6 py-12 relative z-10">
-        <section className="relative w-full max-w-4xl p-8 sm:p-14 lg:p-16 rounded-[24px] bg-white/60 backdrop-blur-2xl border border-white/60 shadow-2xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 pointer-events-none" />
+      <main className="mx-auto flex min-h-[calc(100vh-2.5rem)] max-w-5xl items-center px-4 py-8 sm:min-h-0 sm:items-start sm:px-6 sm:py-16">
+        <section className="relative w-full overflow-hidden rounded-[16px] bg-[var(--hp-paper)] border border-[var(--hp-hairline)]">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div className="absolute -left-20 top-10 h-40 w-52 bg-[var(--hp-primary)] opacity-90 [clip-path:polygon(35%_0,100%_0,65%_100%,0_100%)]" />
+            <div className="absolute -right-24 bottom-10 h-48 w-64 bg-[var(--hp-primary)] opacity-90 [clip-path:polygon(0_0,65%_0,100%_100%,35%_100%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,var(--hp-primary-soft),transparent_55%)] opacity-60" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,var(--hp-bloom-rose),transparent_45%)] opacity-50" />
+          </div>
 
-          <div className="relative z-10 text-center flex flex-col items-center">
-            <div className="inline-flex flex-row items-center gap-2 rounded-full bg-white/80 border border-white/50 shadow-sm px-4 py-2">
-              <span className="inline-block h-2 w-2 rounded-full bg-[var(--hp-primary)] motion-safe:animate-pulse" aria-hidden />
-              <span className="text-[12px] font-semibold tracking-[0.12em] uppercase text-[var(--hp-ink)]">
-                Under construction
-              </span>
-            </div>
-
-            <h1 className="mt-8 text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-[var(--hp-primary)] to-gray-900 leading-tight">
+          <div className="relative px-6 py-10 sm:px-12 sm:py-14">
+            <h1 className="text-3xl sm:text-5xl font-medium tracking-tight text-[var(--hp-ink)]">
               Website Under Construction
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg sm:text-xl text-gray-700 leading-relaxed font-medium">
+            <p className="mt-4 max-w-2xl text-sm sm:text-lg text-[var(--hp-charcoal)] leading-relaxed">
               We&apos;re working hard to bring you a great experience. Please check back soon.
             </p>
 
-            <div className="mt-12 w-full max-w-lg flex flex-col items-center">
-              {/* Rethought sleek and colorful progress bar */}
-              <div className="h-4 w-full rounded-full bg-white/70 backdrop-blur-md border border-white/60 p-1 shadow-inner overflow-hidden flex items-center">
-                <div className="h-full rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-400 w-[60%] motion-safe:animate-[slide-progress_4s_ease-in-out_infinite] shadow-[0_0_12px_rgba(59,130,246,0.6)]" />
+            <div className="mt-8 max-w-lg">
+              <div className="relative h-3.5 w-full rounded-full bg-[var(--hp-fog)] overflow-hidden border border-[var(--hp-hairline)]">
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--hp-primary),var(--hp-primary-bright))]" aria-hidden />
+                <div
+                  className="hp-progress-stripes absolute inset-0 opacity-60"
+                  aria-hidden
+                />
+                <div
+                  className="hp-progress-sweep absolute inset-y-0 w-24"
+                  aria-hidden
+                />
+                <div
+                  className="hp-progress-dot absolute top-1/2 h-3 w-3 rounded-full bg-[var(--hp-bloom-coral)] shadow-[0_0_8px_rgba(255,80,80,0.6)]"
+                  aria-hidden
+                />
               </div>
-              <p className="mt-4 text-sm font-medium text-gray-600">
-                Updating the latest features...
+              <p className="mt-3 text-[12px] text-[var(--hp-graphite)]">
+                Updates are in progress.
               </p>
             </div>
-          </div>
-        </section>
-
-        <section className="mt-10 rounded-[20px] bg-[linear-gradient(135deg,var(--hp-ink),#0f172a)] text-white/90 px-8 py-10 sm:px-14 shadow-lg w-full max-w-4xl text-center flex flex-col items-center">
-          <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-white">Thanks for your patience.</h2>
-          <p className="mt-3 max-w-2xl text-sm sm:text-base opacity-90 leading-relaxed">
-            We&apos;ll be live soon with a refreshed, colorful, and highly polished experience.
-          </p>
-          <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-5 py-2.5 backdrop-blur-sm">
-            <span className="inline-block h-2 w-2 rounded-full bg-[var(--hp-bloom-coral)]" aria-hidden />
-            <span className="text-[12px] font-semibold tracking-[0.15em] uppercase text-white">Stay tuned</span>
           </div>
         </section>
       </main>

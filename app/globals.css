@@ -48,12 +48,80 @@ a {
 }
 
 @keyframes orb-float {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(30px, 50px) scale(1.1); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(30px, 50px) scale(1.1);
+  }
 }
 
-@keyframes slide-progress {
-  0% { width: 10%; filter: hue-rotate(0deg); }
-  50% { width: 100%; filter: hue-rotate(45deg); }
-  100% { width: 10%; filter: hue-rotate(0deg); }
+@keyframes hp-progress-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(560%);
+  }
+}
+
+@keyframes hp-progress-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 32px 0;
+  }
+}
+
+@keyframes hp-progress-dot {
+  0% {
+    left: 4px;
+    transform: translateY(-50%);
+  }
+  50% {
+    left: calc(100% - 16px);
+    transform: translateY(-50%);
+  }
+  100% {
+    left: 4px;
+    transform: translateY(-50%);
+  }
+}
+
+.hp-progress-stripes {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0 10px,
+    transparent 10px 20px
+  );
+}
+
+.hp-progress-sweep {
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  transform: translateX(-100%);
+}
+
+.hp-progress-dot {
+  left: 4px;
+  transform: translateY(-50%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hp-progress-stripes {
+    animation: hp-progress-stripes 1.1s linear infinite;
+  }
+
+  .hp-progress-sweep {
+    animation: hp-progress-sweep 1.8s ease-in-out infinite;
+  }
+
+  .hp-progress-dot {
+    animation: hp-progress-dot 2.2s ease-in-out infinite;
+  }
 }
