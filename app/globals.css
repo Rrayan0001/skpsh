@@ -1,87 +1,59 @@
 @import "tailwindcss";
 
 :root {
-	/* HP-inspired theme tokens (from DESIGN.md) */
-	--hp-primary: #024ad8;
-	--hp-primary-bright: #296ef9;
-	--hp-primary-deep: #0e3191;
-	--hp-primary-soft: #c9e0fc;
+  /* HP-inspired theme tokens (from DESIGN.md) */
+  --hp-primary: #024ad8;
+  --hp-primary-bright: #296ef9;
+  --hp-primary-deep: #0e3191;
+  --hp-primary-soft: #c9e0fc;
 
-	--hp-bloom-coral: #ff5050;
-	--hp-bloom-rose: #f9d4d2;
-	--hp-storm-mist: #8ebdce;
-	--hp-storm-sea: #7fadbe;
-	--hp-storm-deep: #356373;
+  --hp-bloom-coral: #ff5050;
+  --hp-bloom-rose: #f9d4d2;
+  --hp-storm-mist: #8ebdce;
+  --hp-storm-sea: #7fadbe;
+  --hp-storm-deep: #356373;
 
-	--hp-ink: #1a1a1a;
-	--hp-ink-deep: #000000;
-	--hp-ink-soft: #292929;
-	--hp-on-ink: #ffffff;
+  --hp-ink: #1a1a1a;
+  --hp-ink-deep: #000000;
+  --hp-ink-soft: #292929;
+  --hp-on-ink: #ffffff;
 
-	--hp-canvas: #ffffff;
-	--hp-paper: #ffffff;
-	--hp-cloud: #f7f7f7;
-	--hp-fog: #e8e8e8;
+  --hp-canvas: #ffffff;
+  --hp-paper: #ffffff;
+  --hp-cloud: #f7f7f7;
+  --hp-fog: #e8e8e8;
 
-	--hp-steel: #c2c2c2;
-	--hp-graphite: #636363;
-	--hp-charcoal: #3d3d3d;
-	--hp-hairline: #e8e8e8;
+  --hp-steel: #c2c2c2;
+  --hp-graphite: #636363;
+  --hp-charcoal: #3d3d3d;
+  --hp-hairline: #e8e8e8;
 
-	/* Typography: prefer Forma DJR Micro if available; fall back gracefully */
-	--hp-font-sans: "Forma DJR Micro", var(--font-geist-sans), Arial, sans-serif;
+  /* Typography: prefer Forma DJR Micro if available; fall back gracefully */
+  --hp-font-sans: "Forma DJR Micro", var(--font-geist-sans), Arial, sans-serif;
 }
 
 html,
 body {
-	height: 100%;
+  height: 100%;
 }
 
 body {
-	background: var(--hp-canvas);
-	color: var(--hp-ink);
-	font-family: var(--hp-font-sans);
+  background: var(--hp-canvas);
+  color: var(--hp-ink);
+  font-family: var(--hp-font-sans);
 }
 
 a {
-	color: var(--hp-primary);
+  color: var(--hp-primary);
 }
 
-@keyframes hp-chevron-float {
-	0% {
-		transform: translate3d(0, -4px, 0);
-	}
-	50% {
-		transform: translate3d(0, 4px, 0);
-	}
-	100% {
-		transform: translate3d(0, -4px, 0);
-	}
+@keyframes orb-float {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 50px) scale(1.1); }
 }
 
-@keyframes hp-scan {
-	to {
-		background-position: 48px 0;
-	}
-}
-
-@keyframes hp-shimmer {
-	0% {
-		transform: translate3d(-30%, 0, 0);
-	}
-	100% {
-		transform: translate3d(130%, 0, 0);
-	}
-}
-
-@keyframes hp-loader-dot {
-	0% {
-		transform: translate3d(0%, 0, 0) scale(1);
-	}
-	50% {
-		transform: translate3d(580%, 0, 0) scale(1.05);
-	}
-	100% {
-		transform: translate3d(0%, 0, 0) scale(1);
-	}
+@keyframes slide-progress {
+  0% { width: 10%; filter: hue-rotate(0deg); }
+  50% { width: 100%; filter: hue-rotate(45deg); }
+  100% { width: 10%; filter: hue-rotate(0deg); }
 }
