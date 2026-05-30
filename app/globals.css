@@ -1,35 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  /* HP-inspired theme tokens (from DESIGN.md) */
-  --hp-primary: #024ad8;
-  --hp-primary-bright: #296ef9;
-  --hp-primary-deep: #0e3191;
-  --hp-primary-soft: #c9e0fc;
+  /* Brand — Deep Navy Blue + White theme */
+  --brand-primary: #1e3a8a;
+  --brand-primary-hover: #172554;
+  --brand-primary-light: #dbeafe;
+  --brand-primary-soft: #eff6ff;
+  --brand-canvas: #ffffff;
+  --brand-ink: #0f172a;
+  --brand-charcoal: #334155;
+  --brand-hairline: #e2e8f0;
 
-  --hp-bloom-coral: #ff5050;
-  --hp-bloom-rose: #f9d4d2;
-  --hp-storm-mist: #8ebdce;
-  --hp-storm-sea: #7fadbe;
-  --hp-storm-deep: #356373;
-
-  --hp-ink: #1a1a1a;
-  --hp-ink-deep: #000000;
-  --hp-ink-soft: #292929;
-  --hp-on-ink: #ffffff;
-
-  --hp-canvas: #ffffff;
-  --hp-paper: #ffffff;
-  --hp-cloud: #f7f7f7;
-  --hp-fog: #e8e8e8;
-
-  --hp-steel: #c2c2c2;
-  --hp-graphite: #636363;
-  --hp-charcoal: #3d3d3d;
-  --hp-hairline: #e8e8e8;
-
-  /* Typography: prefer Forma DJR Micro if available; fall back gracefully */
-  --hp-font-sans: "Forma DJR Micro", var(--font-geist-sans), Arial, sans-serif;
+  /* Typography: clean sans-serif */
+  --brand-font-sans: var(--font-geist-sans), "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 html,
@@ -38,13 +21,13 @@ body {
 }
 
 body {
-  background: var(--hp-canvas);
-  color: var(--hp-ink);
-  font-family: var(--hp-font-sans);
+  background: var(--brand-canvas);
+  color: var(--brand-ink);
+  font-family: var(--brand-font-sans);
 }
 
 a {
-  color: var(--hp-primary);
+  color: var(--brand-primary);
 }
 
 @keyframes orb-float {
@@ -124,4 +107,22 @@ a {
   .hp-progress-dot {
     animation: hp-progress-dot 2.2s ease-in-out infinite;
   }
+}
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(0.95); opacity: 0.15; }
+  50% { transform: scale(1.05); opacity: 0.35; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
