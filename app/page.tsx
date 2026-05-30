@@ -1,4 +1,36 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+const heroBanners = [
+  {
+    src: "/banner1.png",
+    alt: "Shri Kadasiddheshwar Public School banner",
+    mobilePosition: "center 28%",
+  },
+  {
+    src: "/banner2.png",
+    alt: "Shri Kadasiddheshwar Public School banner two",
+    mobilePosition: "center 42%",
+  },
+  {
+    src: "/banner3.png",
+    alt: "Shri Kadasiddheshwar Public School banner three",
+    mobilePosition: "center 38%",
+  },
+];
+
 export default function Home() {
+  const [activeBanner, setActiveBanner] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveBanner((current) => (current + 1) % heroBanners.length);
+    }, 5000);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
   return (
     <div className="relative flex flex-col bg-white min-h-screen">
       <main className="flex-1 w-full">
@@ -6,18 +38,23 @@ export default function Home() {
         {/* ═══════════════════════════════════════════════════════════
             HERO BANNER — Full-width image with curved swoosh overlay
         ═══════════════════════════════════════════════════════════ */}
-        <div className="w-full pt-6 sm:pt-8 md:pt-6">
+        <div className="w-full pt-3 sm:pt-4 md:pt-3">
           <div className="max-w-[1920px] mx-auto px-5 sm:px-6 lg:px-8">
 
             {/* ── MOBILE HERO LAYOUT ─────────────────────────────── */}
             <div className="block md:hidden">
               <div className="relative w-full h-[360px] sm:h-[420px] overflow-hidden rounded-[18px]">
-                {/* Banner Image */}
-                <img
-                  src="/banner1.png"
-                  alt="Shri Kadasiddheshwar Public School Banner"
-                  className="w-full h-full object-cover object-center select-none"
-                />
+                {heroBanners.map((banner, index) => (
+                  <img
+                    key={banner.src}
+                    src={banner.src}
+                    alt={banner.alt}
+                    style={{ objectPosition: banner.mobilePosition }}
+                    className={`absolute inset-0 h-full w-full object-cover object-center select-none transition-opacity duration-1000 ${
+                      index === activeBanner ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                ))}
 
                 {/* ── Mobile curved swoosh — bottom-left for crest logo ─────── */}
                 <div
@@ -51,13 +88,17 @@ export default function Home() {
             {/* ── DESKTOP HERO LAYOUT ────────────────────────────── */}
             <div className="hidden md:block">
               <div className="relative w-full md:h-[480px] lg:h-[560px] xl:h-[600px] overflow-hidden md:rounded-[30px]">
-
-                {/* Banner Image */}
-                <img
-                  src="/banner1.png"
-                  alt="Shri Kadasiddheshwar Public School Banner"
-                  className="w-full h-full object-cover object-center select-none"
-                />
+                {heroBanners.map((banner, index) => (
+                  <img
+                    key={banner.src}
+                    src={banner.src}
+                    alt={banner.alt}
+                    style={{ objectPosition: "center center" }}
+                    className={`absolute inset-0 h-full w-full object-cover object-center select-none transition-opacity duration-1000 ${
+                      index === activeBanner ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                ))}
 
                 {/* ── Desktop curved swoosh — containing both crest logo and tagline ─────── */}
                 <div
@@ -186,10 +227,10 @@ export default function Home() {
                 </h2>
                 
                 <p className="text-[15px] sm:text-lg leading-relaxed text-slate-600 mb-8">
-                  Shri Kadasiddheshwar Public School (SKPS), a proud unit of the KLE Society, has been a pioneer in education in Hukkeri, shaping future leaders and innovators. With a strong foundation in academic excellence and holistic development, we continue to push boundaries to provide world-class education. Our legacy thrives through our students who are equipped to make a meaningful impact worldwide.
+                  Shri Kadasiddheshwar Public School (SKPS) has been a pioneer in education in Hukkeri, shaping future leaders and innovators. With a strong foundation in academic excellence and holistic development, we continue to push boundaries to provide quality education focused on character, curiosity, and community engagement. Our legacy thrives through our students who are equipped to make a meaningful impact in their communities.
                 </p>
                 
-                <a href="#" className="inline-flex items-center justify-center px-8 py-3.5 text-sm font-bold tracking-wide text-white transition-all bg-[#f05a28] rounded-full hover:bg-[#d94e20] shadow-lg shadow-[#f05a28]/30">
+                <a href="#" className="inline-flex items-center justify-center px-8 py-3.5 text-sm font-bold tracking-wide !text-white transition-all bg-[var(--brand-primary)] rounded-full hover:bg-[var(--brand-primary-hover)] shadow-lg shadow-[var(--brand-primary)]/30">
                   VIEW MORE
                 </a>
               </div>
@@ -209,7 +250,7 @@ export default function Home() {
 
                 {/* Glowing Blobs */}
                 <div 
-                  className="absolute top-1/2 left-1/2 w-[180px] h-[180px] sm:w-[280px] sm:h-[280px] bg-[#f05a28] rounded-full mix-blend-multiply filter blur-[50px] sm:blur-[80px]"
+                  className="absolute top-1/2 left-1/2 w-[180px] h-[180px] sm:w-[280px] sm:h-[280px] bg-[var(--brand-primary-light)] rounded-full mix-blend-multiply filter blur-[50px] sm:blur-[80px]"
                   style={{ animation: 'pulse-glow-custom 3s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}
                 ></div>
                 <div 
@@ -338,7 +379,7 @@ export default function Home() {
                     <div key={arrayIndex} className="flex items-center">
                       {["2026-27 Fees", "Notification", "Syllabus", "Bus Routes", "Brochure-2026", "NIRF", "Admissions Open"].map((item, index) => (
                         <div key={index} className="flex items-center">
-                          <a href="#" className="px-6 sm:px-12 text-[14px] sm:text-[16px] font-bold text-[#f05a28] hover:text-[var(--brand-primary)] transition-colors duration-300 tracking-wide">
+                          <a href="#" className="px-6 sm:px-12 text-[14px] sm:text-[16px] font-bold text-[var(--brand-primary)] hover:text-[var(--brand-primary-hover)] transition-colors duration-300 tracking-wide">
                             {item}
                           </a>
                           <span className="text-[var(--brand-primary)] opacity-40 font-black">||</span>
@@ -348,6 +389,113 @@ export default function Home() {
                   ))}
                 </div>
 
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+            NEWS & EVENTS SECTION — 4th Section
+        ═══════════════════════════════════════════════════════════ */}
+        <section className="w-full bg-white pt-2 sm:pt-4 lg:pt-6 pb-16 sm:pb-24 lg:pb-32 overflow-hidden">
+          <div className="mx-auto max-w-[1920px] px-5 sm:px-6 lg:px-12">
+            
+            {/* Top row: Events title image on the left, Overlapping circles on the right */}
+            <div className="relative flex flex-col lg:flex-row lg:items-center justify-between mb-16 sm:mb-24 gap-12 lg:gap-8">
+              
+              {/* Events Title Image */}
+              <div className="relative select-none flex-shrink-0 mx-auto lg:mx-0">
+                <img 
+                  src="/section-4/events.png" 
+                  alt="Events Title" 
+                  className="w-[180px] sm:w-[260px] xl:w-[340px] h-auto object-contain mix-blend-multiply opacity-95 object-center lg:object-left mx-auto lg:mx-0"
+                />
+              </div>
+
+              {/* Overlapping Circles */}
+              <div className="relative z-10 flex flex-nowrap items-center flex-1 justify-center lg:justify-end overflow-x-auto lg:overflow-visible py-4 scrollbar-hide px-4 sm:px-6 lg:px-0">
+                {/* Circle 1 */}
+                <div className="w-[100px] h-[100px] min-[400px]:w-[120px] min-[400px]:h-[120px] sm:w-[200px] sm:h-[200px] xl:w-[280px] xl:h-[280px] rounded-full overflow-hidden border-4 sm:border-[6px] border-white shadow-[0_12px_32px_rgba(0,0,0,0.15)] flex-shrink-0 z-10 relative cursor-pointer transition-all duration-300 hover:scale-105 hover:z-50">
+                  <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=800&auto=format&fit=crop" alt="Convocation Ceremony" className="w-full h-full object-cover" />
+                </div>
+                {/* Circle 2 */}
+                <div className="w-[100px] h-[100px] min-[400px]:w-[120px] min-[400px]:h-[120px] sm:w-[200px] sm:h-[200px] xl:w-[280px] xl:h-[280px] rounded-full overflow-hidden border-4 sm:border-[6px] border-white shadow-[0_12px_32px_rgba(0,0,0,0.15)] flex-shrink-0 -ml-6 min-[400px]:-ml-8 sm:-ml-12 xl:-ml-16 z-20 relative cursor-pointer transition-all duration-300 hover:scale-105 hover:z-50">
+                  <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=800&auto=format&fit=crop" alt="Guest Speakers" className="w-full h-full object-cover" />
+                </div>
+                {/* Circle 3 */}
+                <div className="w-[100px] h-[100px] min-[400px]:w-[120px] min-[400px]:h-[120px] sm:w-[200px] sm:h-[200px] xl:w-[280px] xl:h-[280px] rounded-full overflow-hidden border-4 sm:border-[6px] border-white shadow-[0_12px_32px_rgba(0,0,0,0.15)] flex-shrink-0 -ml-6 min-[400px]:-ml-8 sm:-ml-12 xl:-ml-16 z-30 relative cursor-pointer transition-all duration-300 hover:scale-105 hover:z-50">
+                  <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=800&auto=format&fit=crop" alt="Sports Team" className="w-full h-full object-cover" />
+                </div>
+                {/* Circle 4 - Explore */}
+                <div className="w-[100px] h-[100px] min-[400px]:w-[120px] min-[400px]:h-[120px] sm:w-[200px] sm:h-[200px] xl:w-[280px] xl:h-[280px] rounded-full overflow-hidden border-4 sm:border-[6px] border-white shadow-[0_12px_32px_rgba(0,0,0,0.15)] flex-shrink-0 -ml-6 min-[400px]:-ml-8 sm:-ml-12 xl:-ml-16 z-40 relative cursor-pointer transition-all duration-300 hover:scale-105 hover:z-50 flex items-center justify-center bg-gradient-to-tr from-[var(--brand-primary)] to-[#3b82f6] group">
+                  <span className="text-white text-xs min-[400px]:text-sm sm:text-2xl xl:text-4xl font-bold group-hover:tracking-wider transition-all duration-300">Explore</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Row: Grid Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start max-w-7xl mx-auto px-2 sm:px-0">
+              
+              {/* Left Side: Heading */}
+              <div className="lg:col-span-4">
+                <h3 className="text-3xl sm:text-5xl font-bold text-[var(--brand-primary)] tracking-tight">
+                  News & Events
+                </h3>
+              </div>
+
+              {/* Right Side: Content & Ticker */}
+              <div className="lg:col-span-8 flex flex-col gap-10">
+                <p className="text-[15px] sm:text-[17px] leading-relaxed text-slate-600 font-medium text-left">
+                  Shri Kadasiddheshwar Public School is committed to fostering academic excellence, creative expression, and strong community values. We offer a diverse set of programmes and activities that help students grow intellectually, socially, and emotionally while preparing them for lifelong learning.
+                </p>
+
+                {/* Ticker / Events List */}
+                <div className="w-full">
+                  <style dangerouslySetInnerHTML={{__html: `
+                    @keyframes ticker-events-scroll {
+                      0% { transform: translateX(0%); }
+                      100% { transform: translateX(-50%); }
+                    }
+                    .animate-ticker-events {
+                      animation: ticker-events-scroll 25s linear infinite;
+                    }
+                    .animate-ticker-events:hover {
+                      animation-play-state: paused;
+                    }
+                  `}} />
+                  <div className="w-full bg-[#f8f9fa] border border-slate-200 rounded-md flex flex-col sm:flex-row sm:items-center shadow-sm">
+                    
+                    {/* Up Coming Events Tag */}
+                    <div className="bg-slate-100 relative z-10 px-6 py-4 border-b sm:border-b-0 sm:border-r border-slate-200 flex-shrink-0">
+                      <span className="text-[14px] sm:text-[15px] font-bold text-slate-900 tracking-wide">Up Coming Events</span>
+                    </div>
+
+                    {/* Scrolling Event Body */}
+                    <div className="flex-1 overflow-hidden flex items-center bg-[#f8f9fa] min-h-[56px] sm:min-h-[64px]">
+                      <div className="flex items-center animate-ticker-events whitespace-nowrap w-max">
+                        {[...Array(2)].map((_, arrayIndex) => (
+                          <div key={arrayIndex} className="flex items-center">
+                            {[
+                              { id: "025", title: "SKPS Welcomes New Academic Session", date: "December 13, 2025" },
+                              { id: "026", title: "SKPS Annual Sports Meet 2026", date: "January 20, 2026" },
+                              { id: "027", title: "SKPS Inter-School Science Exhibition", date: "February 15, 2026" },
+                              { id: "028", title: "SKPS Cultural Fest & Alumni Meet", date: "March 05, 2026" }
+                            ].map((event, i) => (
+                              <div key={i} className="flex items-center mx-6 sm:mx-12">
+                                <div className="flex items-center gap-3 sm:gap-4 w-[280px] sm:w-[350px]">
+                                  <span className="text-slate-400 font-mono text-sm font-semibold">{event.id}</span>
+                                  <span className="text-[var(--brand-primary)] font-bold text-sm sm:text-base truncate" title={event.title}>{event.title}</span>
+                                </div>
+                                <span className="text-slate-500 font-medium text-xs sm:text-sm flex-shrink-0 text-right w-[120px]">{event.date}</span>
+                              </div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 

@@ -20,7 +20,7 @@ const dancingScript = Dancing_Script({
 
 export const metadata: Metadata = {
   title: "Shri Kadasiddheshwar Public School, Hukkeri",
-  description: "Official website of Shri Kadasiddheshwar Public School (SKPS), Hukkeri. A unit of KLE Society.",
+  description: "Official website of Shri Kadasiddheshwar Public School (SKPS), Hukkeri.",
 };
 
 export default function RootLayout({
@@ -34,11 +34,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${dancingScript.variable} h-full antialiased`}
     >
       <head>
-        <link rel="icon" href="/favicon_io/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
-        <link rel="manifest" href="/favicon_io/site.webmanifest" />
+        <link rel="icon" href="/navbarlogo.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/navbarlogo.png" />
         <meta name="theme-color" content="#111111" />
       </head>
       <body className="min-h-full flex flex-col bg-white">
@@ -53,20 +50,12 @@ export default function RootLayout({
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
 
             {/* Logo + School name */}
-            <Link href="/" className="inline-flex items-center gap-2 sm:gap-3 min-w-0">
+            <Link href="/" className="inline-flex items-center gap-3 min-w-0">
               <img
-                src="/favicon_io/bg_removed_logo.png"
+                src="/navbarlogo.png"
                 alt="School Logo"
-                className="h-9 sm:h-11 object-contain shrink-0"
+                className="h-15 sm:h-16 md:h-15 object-contain shrink-0"
               />
-              <div className="flex flex-col text-left min-w-0">
-                <span className="text-[11px] sm:text-[14px] md:text-[16px] font-extrabold text-[var(--brand-ink)] tracking-tight leading-tight truncate">
-                  Shri Kadasiddheshwar Public School
-                </span>
-                <span className="text-[8px] sm:text-[10px] font-semibold text-[var(--brand-primary)] tracking-wide leading-none">
-                  Hukkeri — A unit of KLE Society
-                </span>
-              </div>
             </Link>
 
             {/* Desktop nav */}
@@ -122,7 +111,7 @@ export default function RootLayout({
             "
           >
             <div className="flex flex-col px-5 py-4 gap-1">
-              <Link href="/"   className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[var(--brand-primary)] text-white font-bold text-[15px]">Home</Link>
+              <Link href="/"   className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[var(--brand-primary)] !text-white font-bold text-[15px]">Home</Link>
               <a href="#"   className="flex items-center gap-2 px-4 py-3 rounded-xl text-[var(--brand-ink)] font-semibold text-[15px] hover:bg-slate-50 transition">About Us</a>
               <a href="#"   className="flex items-center gap-2 px-4 py-3 rounded-xl text-[var(--brand-ink)] font-semibold text-[15px] hover:bg-slate-50 transition">Admissions</a>
               <a href="#"   className="flex items-center gap-2 px-4 py-3 rounded-xl text-[var(--brand-ink)] font-semibold text-[15px] hover:bg-slate-50 transition">News &amp; Events</a>
