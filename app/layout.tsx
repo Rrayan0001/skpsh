@@ -41,7 +41,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-white">
 
         {/* ── NAVBAR ─────────────────────────────────────────────── */}
-        <header className="w-full bg-white relative z-50">
+        <header className="w-full sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100/85 transition-all duration-200">
 
           {/* Hamburger toggle — hidden checkbox trick, no JS needed */}
           <input type="checkbox" id="mobile-menu-toggle" className="peer sr-only" />
@@ -115,7 +115,7 @@ export default function RootLayout({
               overflow-hidden
               max-h-0 peer-checked:max-h-[400px]
               transition-[max-height] duration-300 ease-in-out
-              bg-white border-t border-slate-100 shadow-md
+              bg-white/90 backdrop-blur-lg border-t border-slate-100/80 shadow-md
             "
           >
             <div className="flex flex-col px-5 py-4 gap-1">
