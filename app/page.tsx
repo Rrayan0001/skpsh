@@ -4,19 +4,22 @@ import { useEffect, useState } from "react";
 
 const heroBanners = [
   {
-    src: "/banner1.png",
+    src: "/herosection/banner1.png",
     alt: "Shri Kadasiddheshwar Public School banner",
-    mobilePosition: "center 28%",
+    mobilePosition: "82% 58%",
+    mobileScale: 1.16,
   },
   {
-    src: "/banner2.png",
+    src: "/herosection/banner2.png",
     alt: "Shri Kadasiddheshwar Public School banner two",
-    mobilePosition: "center 42%",
+    mobilePosition: "82% 52%",
+    mobileScale: 1.14,
   },
   {
-    src: "/banner3.png",
+    src: "/herosection/banner3.png",
     alt: "Shri Kadasiddheshwar Public School banner three",
-    mobilePosition: "center 38%",
+    mobilePosition: "80% 50%",
+    mobileScale: 1.15,
   },
 ];
 
@@ -43,29 +46,36 @@ export default function Home() {
 
             {/* ── MOBILE HERO LAYOUT ─────────────────────────────── */}
             <div className="block md:hidden">
-              <div className="relative w-full h-[360px] sm:h-[420px] overflow-hidden rounded-[18px]">
+              <div className="relative w-full h-[320px] min-[380px]:h-[350px] sm:h-[400px] overflow-hidden rounded-[18px] bg-white">
                 {heroBanners.map((banner, index) => (
                   <img
                     key={banner.src}
                     src={banner.src}
                     alt={banner.alt}
-                    style={{ objectPosition: banner.mobilePosition }}
-                    className={`absolute inset-0 h-full w-full object-cover object-center select-none transition-opacity duration-1000 ${
+                    style={{
+                      objectPosition: banner.mobilePosition,
+                      transform: `scale(${banner.mobileScale})`,
+                    }}
+                    className={`absolute inset-0 h-full w-full origin-center object-cover select-none transition-[opacity,transform] duration-1000 ${
                       index === activeBanner ? "opacity-100" : "opacity-0"
                     }`}
                   />
                 ))}
 
+                <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/18 to-transparent pointer-events-none" />
+
                 {/* ── Mobile curved swoosh — bottom-left for crest logo ─────── */}
                 <div
-                  className="absolute bottom-0 left-0 bg-white"
+                  className="absolute -bottom-[2px] -left-[2px]"
                   style={{
-                    borderTopRightRadius: '72% 72%',
-                    width: 'clamp(138px, 38vw, 212px)',
-                    height: 'clamp(108px, 28vw, 168px)',
+                    width: 'calc(clamp(130px, 34vw, 190px) + 4px)',
+                    height: 'calc(clamp(100px, 26vw, 145px) + 4px)',
                   }}
                 >
-                  <div className="absolute bottom-4 left-5 w-[72px] h-[72px] flex items-center justify-center">
+                  <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full text-white fill-current">
+                    <path d="M 0,100 L 0,0 Q 40,60 100,100 Z" />
+                  </svg>
+                  <div className="absolute bottom-[10%] left-[8%] w-[44%] h-[44%] flex items-center justify-center">
                     <img
                       src="/favicon_io/bg_removed_logo.png"
                       alt="School Crest"
@@ -78,7 +88,7 @@ export default function Home() {
               {/* Mobile brand identity / tagline below */}
               <div className="w-full pt-7 pb-3">
                 <img
-                  src="/HEROD.png"
+                  src="/herosection/HEROD.png"
                   alt="Shri Kadasiddheshwar Public School Tagline"
                   className="mx-auto h-auto w-full max-w-[390px] object-contain select-none"
                 />
@@ -128,7 +138,7 @@ export default function Home() {
 
                   {/* ── HEROD Identity Image ─────────────────────────── */}
                   <img
-                    src="/HEROD.png"
+                    src="/herosection/HEROD.png"
                     alt="School Tagline and Identity"
                     className="absolute h-auto object-contain select-none"
                     style={{
@@ -496,6 +506,137 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+            CAMPUS LIFE & EVENTS — 5th Section
+        ═══════════════════════════════════════════════════════════ */}
+        <section className="w-full bg-white py-12 sm:py-24 overflow-hidden border-t border-slate-100">
+          <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+
+            {/* Section Header */}
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10 sm:mb-16">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-6 h-[2px] bg-[var(--brand-primary)]"></div>
+                  <span className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Campus Life</span>
+                </div>
+                <h2 className="text-3xl leading-[1.15] sm:text-5xl lg:text-[52px] font-medium tracking-tight text-slate-900">
+                  Life at SKPS
+                </h2>
+                <p className="mt-4 max-w-xl text-sm sm:text-base leading-relaxed text-slate-500">
+                  At Shri Kadasiddheshwar Public School, Hukkeri, education goes beyond academics to embrace our rich cultural heritage and moral foundations. Through festive celebrations like Ganesh Chaturthi and national programs, we instill deep-rooted values, patriotism, and unity in our students.
+                </p>
+              </div>
+              <a
+                href="/under-construction"
+                className="inline-flex items-center gap-2 flex-shrink-0 text-sm font-bold text-[var(--brand-primary)] border border-[var(--brand-primary)]/30 rounded-full px-6 py-2.5 hover:bg-[var(--brand-primary-soft)] transition-colors duration-200 self-start sm:self-auto"
+              >
+                View Full Gallery
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+            </div>
+
+            {/* Photo Grid — editorial asymmetric layout */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 sm:gap-4">
+
+              {/* Large feature image — left, spans 5 cols, 2 rows */}
+              <div className="group relative sm:col-span-1 lg:col-span-5 lg:row-span-2 overflow-hidden rounded-2xl bg-slate-100 h-80 sm:h-[450px] lg:h-auto">
+                <img
+                  src="/section-5/image1.jpeg"
+                  alt="Teachers' Day Celebration at SKPS"
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 p-5 sm:p-6">
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-[0.18em] text-white/70 mb-1.5">Annual Celebration</span>
+                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">Teachers&apos; Day Ceremony</h3>
+                  <p className="text-sm text-white/70 mt-1 leading-relaxed max-w-xs hidden sm:block">Students honor their mentors with heartfelt presentations and spoken-word tributes on the school stage.</p>
+                </div>
+              </div>
+
+              {/* Top-right image — spans 7 cols */}
+              <div className="group relative lg:col-span-7 overflow-hidden rounded-2xl bg-slate-100 h-60 sm:h-[280px] lg:h-[300px]">
+                <img
+                  src="/section-5/image4.jpeg"
+                  alt="Azadi Ka Amrit Mahotsav School Assembly"
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 p-5 sm:p-6">
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-[0.18em] text-white/70 mb-1.5">National Programme</span>
+                  <h3 className="text-lg font-bold text-white leading-snug">Azadi Ka Amrit Mahotsav</h3>
+                  <p className="text-sm text-white/70 mt-1 leading-relaxed max-w-sm hidden sm:block">The entire school community assembles to celebrate India&apos;s independence milestone with pride and patriotism.</p>
+                </div>
+              </div>
+
+              {/* Three smaller images in a row — each spans 7/3 ≈ cols on desktop, 2-col layout on mobile */}
+              <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+
+                {/* image3 */}
+                <div className="group relative overflow-hidden rounded-2xl bg-slate-100 h-40 sm:h-[180px] lg:h-[200px]">
+                  <img
+                    src="/section-5/image3.jpeg"
+                    alt="Student presenting gift to teacher"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/75 to-transparent" />
+                  <div className="absolute bottom-0 left-0 p-4">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-white/70 block mb-0.5">Gratitude</span>
+                    <h4 className="text-xs sm:text-sm font-bold text-white leading-tight">Honouring Our Guides</h4>
+                  </div>
+                </div>
+
+                {/* image5 */}
+                <div className="group relative overflow-hidden rounded-2xl bg-slate-100 h-40 sm:h-[180px] lg:h-[200px]">
+                  <img
+                    src="/section-5/image5.jpeg"
+                    alt="Students in disciplined morning assembly formation"
+                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/75 to-transparent" />
+                  <div className="absolute bottom-0 left-0 p-4">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-white/70 block mb-0.5">Discipline</span>
+                    <h4 className="text-xs sm:text-sm font-bold text-white leading-tight">Morning Assembly</h4>
+                  </div>
+                </div>
+
+                {/* image6 */}
+                <div className="group relative overflow-hidden rounded-2xl bg-slate-100 h-40 sm:h-[180px] lg:h-[200px] col-span-2 sm:col-span-1">
+                  <img
+                    src="/section-5/image6.jpeg"
+                    alt="Primary students in morning prayer"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/75 to-transparent" />
+                  <div className="absolute bottom-0 left-0 p-4">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-white/70 block mb-0.5">Values</span>
+                    <h4 className="text-xs sm:text-sm font-bold text-white leading-tight">Morning Prayer</h4>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* Bottom row — wide Ganesh celebration image */}
+            <div className="group relative mt-3 sm:mt-4 overflow-hidden rounded-2xl bg-slate-100 h-64 sm:h-[280px] lg:h-[320px]">
+              <img
+                src="/section-5/image2.jpeg"
+                alt="Ganesh Chaturthi celebration at SKPS with dignitaries"
+                className="w-full h-full object-cover object-[center_30%] transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-slate-900/80 via-slate-900/30 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 sm:inset-y-0 sm:left-0 sm:right-auto flex flex-col justify-end sm:justify-center p-5 sm:p-8 md:p-10 max-w-md">
+                <span className="inline-block text-[10px] font-bold uppercase tracking-[0.18em] text-white/70 mb-1.5">Cultural Festival</span>
+                <h3 className="text-lg sm:text-2xl font-bold text-white leading-snug">Ganesh Chaturthi Celebrations</h3>
+                <p className="text-sm text-white/70 mt-2 leading-relaxed hidden sm:block">Community dignitaries join our school family to celebrate Ganesh Chaturthi, fostering cultural pride and unity among students.</p>
               </div>
             </div>
 

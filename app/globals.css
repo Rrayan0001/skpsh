@@ -15,10 +15,7 @@
   --brand-font-sans: var(--font-geist-sans), "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-html,
-body {
-  height: 100%;
-}
+
 
 body {
   background: var(--brand-canvas);
