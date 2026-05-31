@@ -77,7 +77,7 @@ export default function RootLayout({
               <a href="#" className="hover:text-[var(--brand-primary-hover)] transition">About Us</a>
               <a href="#" className="hover:text-[var(--brand-primary-hover)] transition">Admissions</a>
               <a href="#" className="hover:text-[var(--brand-primary-hover)] transition">News &amp; Events</a>
-              <a href="#" className="hover:text-[var(--brand-primary-hover)] transition">Bulletin</a>
+              <a href="#" className="hover:text-[var(--brand-primary-hover)] transition">Mandatory Disclosure</a>
               <a href="#" className="hover:text-[var(--brand-primary-hover)] transition">Contact Us</a>
             </nav>
 
@@ -123,7 +123,7 @@ export default function RootLayout({
               <a href="#"   className="flex items-center gap-2 px-4 py-3 rounded-xl text-[var(--brand-ink)] font-semibold text-[15px] hover:bg-slate-50 transition">About Us</a>
               <a href="#"   className="flex items-center gap-2 px-4 py-3 rounded-xl text-[var(--brand-ink)] font-semibold text-[15px] hover:bg-slate-50 transition">Admissions</a>
               <a href="#"   className="flex items-center gap-2 px-4 py-3 rounded-xl text-[var(--brand-ink)] font-semibold text-[15px] hover:bg-slate-50 transition">News &amp; Events</a>
-              <a href="#"   className="flex items-center gap-2 px-4 py-3 rounded-xl text-[var(--brand-ink)] font-semibold text-[15px] hover:bg-slate-50 transition">Bulletin</a>
+              <a href="#"   className="flex items-center gap-2 px-4 py-3 rounded-xl text-[var(--brand-ink)] font-semibold text-[15px] hover:bg-slate-50 transition">Mandatory Disclosure</a>
               <a href="#"   className="flex items-center gap-2 px-4 py-3 rounded-xl text-[var(--brand-ink)] font-semibold text-[15px] hover:bg-slate-50 transition">Contact Us</a>
             </div>
           </nav>
