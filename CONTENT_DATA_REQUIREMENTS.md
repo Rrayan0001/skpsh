@@ -1,158 +1,214 @@
 # Shri Kadasiddheshwar Public School (SKPS), Hukkeri
-## Client Content & Data Input Requirements Guide
+## Website Content & Data Requirements List
 
-This document lists all the custom assets, text copy, stats, links, and documents that need to be provided by the school administration (the client) to replace the current placeholder content and complete the site build.
+This guide serves as a complete content checklist for the school administration (the client). It is organized section by section according to the codebase. It specifies exactly what data fields (headings, labels, paragraphs, counters, and document links) are required to replace the general placeholder content and customize the site for SKPS Hukkeri.
 
 ---
 
-### Table of Contents
+## Table of Contents
 1. [Global Header & Navigation](#1-global-header--navigation)
-2. [Hero Banner Section](#2-hero-banner-section)
-3. [Key Performance Indicators (Stats Row)](#3-key-performance-indicators-stats-row)
+2. [Hero Slider Section](#2-hero-slider-section)
+3. [Key Performance Indicators (Stats Counters)](#3-key-performance-indicators-stats-counters)
 4. [About Us Section](#4-about-us-section)
-5. [School Life Section](#5-school-life-section)
-6. [Floating Announcement & Quick Links Marquee](#6-floating-announcement--quick-links-marquee)
-7. [News & Events Gallery & Ticker](#7-news--events-gallery--ticker)
-8. [Under Construction / Launch Page](#8-under-construction--launch-page)
-9. [Missing Global Elements (Recommendations)](#9-missing-global-elements-recommendations)
+5. [School Life Highlight Section](#5-school-life-highlight-section)
+6. [Floating Quick Links Marquee](#6-floating-quick-links-marquee)
+7. [News & Events Gallery & Description](#7-news--events-gallery--description)
+8. [Upcoming Events Scrolling Ticker](#8-upcoming-events-scrolling-ticker)
+9. [Campus Life Photo Grid & Celebrations](#9-campus-life-photo-grid--celebrations)
+10. [Global Footer Section](#10-global-footer-section)
+11. [Website Under Construction Page](#11-website-under-construction-page)
 
 ---
 
 ### 1. Global Header & Navigation
-*Located in [layout.tsx](app/layout.tsx)*
+*Code Location: [layout.tsx (Lines 43-131)](file:///Users/mrrayan07/Desktop/SK_School/app/layout.tsx#L43-L131)*
 
-These elements appear at the very top of every page.
+The header navigation appears on top of every page. The client needs to confirm the branding text and navigation routes.
 
-| Data Item | Current Placeholder Value | Input Type | Required Specification / Recommendation |
+| Requirement / Heading | Field Description | Current General Value | Example Real Data (SKPS Hukkeri) |
 | :--- | :--- | :--- | :--- |
-| **Navbar Brand Logo** | `/navbarlogo.png` | Image File | A high-quality logo of the school (preferably transparent PNG). Recommended height: `64px`. |
-| **School Name Title** | `"Shri Kadasiddheshwar Public School"` | Plain Text | Formal name of the institution for SEO indexing and headers. |
-| **Location Subtitle** | `"Hukkeri"` | Plain Text | Branch, location, or affiliation subtitle. |
-| **Navbar Menu Links** | Home, About Us, Admissions, News & Events, Bulletin, Contact Us | Links (URLs) | Target destinations for each menu button. If external pages exist or other routes are built (e.g. `/about`, `/contact`), specify the URLs. |
-| **Search Functionality** | Anchor target `#` | System Config | Clarification on whether a search system is required, or if this button should trigger a search overlay/input. |
+| **School Name / Brand Title** | Main school name displayed in the navbar. | `"Shri Kadasiddheshwar Public School"` | `"Shri Kadasiddheshwar Public School"` |
+| **Location Subtitle** | Subtext under the main school name indicating the branch or location. | `"Hukkeri"` | `"Hukkeri"` (or `"Yamkanmardi Branch"` if applicable) |
+| **Navbar Menu Item 1** | Primary navigation link. | `"Home"` | `"Home"` (leads to `/`) |
+| **Navbar Menu Item 2** | Link to general school information. | `"About Us"` | `"About Us"` (can link to `/about` or page anchor) |
+| **Navbar Menu Item 3** | Link to admission forms and procedures. | `"Admissions"` | `"Admissions"` (can link to `/admissions` or page anchor) |
+| **Navbar Menu Item 4** | Link to galleries and announcements. | `"News & Events"` | `"News & Events"` (can link to `/news-events`) |
+| **Navbar Menu Item 5** | Link to CBSE mandatory disclosures and forms. | `"Mandatory Disclosure"` | `"CBSE Disclosures"` or `"Mandatory Disclosures"` |
+| **Navbar Menu Item 6** | Link to school office contacts and query forms. | `"Contact Us"` | `"Contact Us"` (can link to `/contact`) |
 
 ---
 
-### 2. Hero Banner Section
-*Located in [page.tsx (Lines 6-107)](app/page.tsx)*
+### 2. Hero Slider Section
+*Code Location: [page.tsx (Lines 5-24, 43-158)](file:///Users/mrrayan07/Desktop/SK_School/app/page.tsx#L5-L24)*
 
-The first impression banner of the home page.
+The hero banner displays a rotating gallery. While images are already handled, the descriptive text tags (alt tags) and tagline text overlays must be finalized.
 
-| Data Item | Current Placeholder Value | Input Type | Required Specification / Recommendation |
+| Requirement / Heading | Field Description | Current General Value | Example Real Data (SKPS Hukkeri) |
 | :--- | :--- | :--- | :--- |
-| **Hero Banner Image** | `/banner1.png` | Image File | High-resolution hero shot of the school building, campus, or active students.<br>• **Desktop:** `1920x600px` (or `16:5` ratio). Keep text/face safe-zones away from the bottom-left curve.<br>• **Mobile:** `800x800px` (or `1:1` ratio). |
-| **Curved Swoosh Crest Logo** | `/favicon_io/bg_removed_logo.png` | Image File | Transparent circular crest logo of the school. Fits in the white curved swoosh. |
-| **Hero Brand Tagline / Logo Text** | `/HEROD.png` | Image File | High-resolution styled text asset showing the school name or primary tagline that overlays the desktop swoosh. Recommended transparent PNG. |
+| **Banner 1 Descriptive Text** | Image accessibility and fallback text description. | `"Shri Kadasiddheshwar Public School banner"` | `"Main administrative building and front garden landscape of SKPS Hukkeri"` |
+| **Banner 2 Descriptive Text** | Image accessibility and fallback text description. | `"Shri Kadasiddheshwar Public School banner two"` | `"SKPS students conducting experiments in the secondary science laboratory"` |
+| **Banner 3 Descriptive Text** | Image accessibility and fallback text description. | `"Shri Kadasiddheshwar Public School banner three"` | `"A group of elementary school students reading books in the SKPS library"` |
+| **Desktop Brand Tagline / Overlay Text** | The tagline or core values text laid over the desktop curve. | Loads text image `/herosection/HEROD.png` | `"Shri Kadasiddheshwar Public School — Yamkanmardi Road, Hukkeri"` or `"Nurturing Excellence, Inspiring Leadership"` |
 
 ---
 
-### 3. Key Performance Indicators (Stats Row)
-*Located in [page.tsx (Lines 109-155)](app/page.tsx)*
+### 3. Key Performance Indicators (Stats Counters)
+*Code Location: [page.tsx (Lines 160-206)](file:///Users/mrrayan07/Desktop/SK_School/app/page.tsx#L160-L206)*
 
-A numerical grid highlighting the school's achievements.
+A section highlights key school achievements and statistics in a prominent grid row.
 
-| Stat Name | Current Stat Counter | Current Label Text | Input Type |
+| Requirement / Heading | Field Description | Current General Value | Example Real Data (SKPS Hukkeri) |
 | :--- | :--- | :--- | :--- |
-| **Stat 1: Student Count** | `1,000+` | `Students` | Number + Text |
-| **Stat 2: Staff Count** | `50+` | `Expert Staff` | Number + Text |
-| **Stat 3: Results Success** | `100%` | `Results` | Number + Text |
-| **Stat 4: Campuses / Focus** | `1` | `Dynamic Campus` | Number + Text |
+| **Stat 1 Counter** | Numeric or text statistic for student strength. | `"1,000+"` | `"1,200+"` |
+| **Stat 1 Label** | Label text under Stat 1 counter. | `"Students"` | `"Enrolled Students"` |
+| **Stat 2 Counter** | Numeric or text statistic for teaching faculty strength. | `"50+"` | `"65"` |
+| **Stat 2 Label** | Label text under Stat 2 counter. | `"Expert Staff"` | `"Experienced Educators"` |
+| **Stat 3 Counter** | Academic success rate indicator. | `"100%"` | `"100%"` |
+| **Stat 3 Label** | Label text under Stat 3 counter. | `"Results"` | `"CBSE Board Success Rate"` |
+| **Stat 4 Counter** | Details of campus size, structure, or branches. | `"1"` | `"4-Acre"` or `"23"` |
+| **Stat 4 Label** | Label text under Stat 4 counter. | `"Dynamic Campus"` | `"Modern Green Campus"` or `"Smart Classrooms"` |
 
 ---
 
 ### 4. About Us Section
-*Located in [page.tsx (Lines 157-237)](app/page.tsx)*
+*Code Location: [page.tsx (Lines 208-289)](file:///Users/mrrayan07/Desktop/SK_School/app/page.tsx#L208-L289)*
 
-A brief introduction section welcoming users to the site.
+An introductory welcome statement showing the school's identity, history, and vision.
 
-| Data Item | Current Placeholder Value | Input Type | Required Specification / Recommendation |
+| Requirement / Heading | Field Description | Current General Value | Example Real Data (SKPS Hukkeri) |
 | :--- | :--- | :--- | :--- |
-| **Section Tagline** | `"About Us"` | Plain Text | Short uppercase category label. |
-| **Main Section Headline** | `"A Legacy of Learning, A Future of Discovery."` | Plain Text | 2-line catchy headline. |
-| **Introduction Copy** | `"Shri Kadasiddheshwar Public School (SKPS) has been a pioneer in education in Hukkeri, shaping future leaders..."` | Rich Text / Paragraph | A ~3-4 sentence welcoming description of the school, its values, history, and mission. |
-| **"View More" Link** | Target URL `#` | Link (URL) | Destination page where users can read the detailed history (e.g. `/about-us` or a PDF document). |
-| **Background Watermark Text** | `"SKPS"` | Plain Text | Styled giant visual watermark text overlaying the background orbs. |
+| **Section Tagline** | The small uppercase text label preceding the main header. | `"About Us"` | `"Welcome to SKPS Hukkeri"` |
+| **Main Section Headline** | The primary eye-catching headline of the section (2 lines). | `"A Legacy of Learning, A Future of Discovery."` | `"Empowering Minds, Inspiring Character & Shaping Futures."` |
+| **Welcome / Introduction Paragraph** | Main welcoming text. A ~3-4 sentence paragraph describing the school's mission, standard curriculum, and focus on holistic education. | `"Shri Kadasiddheshwar Public School (SKPS) has been a pioneer in education in Hukkeri, shaping future leaders and innovators. With a strong foundation in academic excellence and holistic development, we continue to push boundaries to provide quality education focused on character, curiosity, and community engagement..."` | `"Established in 2003, Shri Kadasiddheshwar Public School (SKPS), Hukkeri is dedicated to providing high-quality education under the CBSE curriculum. We focus on intellectual development, moral strength, and physical fitness to nurture responsible citizens. Through state-of-the-art facilities and student-centric learning methods, we guide our students to excel in academics, sports, and creative fields."` |
+| **View More Button Text & URL** | Call to action button text and destination link. | Button: `"VIEW MORE"`<br>Link: `#` | Button: `"EXPLORE OUR HISTORY"` or `"READ PRINCIPAL'S MESSAGE"` <br>Link: `/about` or `/about-us.pdf` |
+| **Watermark Text** | The giant translucent outline watermark text in the background. | `"SKPS"` | `"SKPS"` |
 
 ---
 
-### 5. School Life Section
-*Located in [page.tsx (Lines 239-311)](app/page.tsx)*
+### 5. School Life Highlight Section
+*Code Location: [page.tsx (Lines 290-363)](file:///Users/mrrayan07/Desktop/SK_School/app/page.tsx#L290-L363)*
 
-Premium banner focusing on student experience and active life on campus.
+A premium overlay banner emphasizing student life, co-curricular highlights, and general metrics.
 
-| Data Item | Current Placeholder Value | Input Type | Required Specification / Recommendation |
+| Requirement / Heading | Field Description | Current General Value | Example Real Data (SKPS Hukkeri) |
 | :--- | :--- | :--- | :--- |
-| **Background Photo** | `/section-2/BG.png` | Image File | High-quality background image of the campus or classroom. Sized to fit `1920x800px` (object-cover). |
-| **Student Foreground Photo 1** | `/section-2/student.png` | Image File | Cut-out (transparent background) image of a younger student holding a pencil. Sits on the left side of the visual area. |
-| **Student Foreground Photo 2** | `/section-2/student1.png` | Image File | Cut-out (transparent background) image of a student with a backpack. Sits on the right side. |
-| **Section Tagline** | `"School Life At SKPS"` | Plain Text | Uppercase section tracker label. |
-| **Main Cursive Headline** | `"Where young minds become Future Ready"` | Plain Text | Primary text + cursive script emphasis. |
-| **Short Description** | `"A refined school environment built around joyful learning, disciplined routines, creative exposure..."` | Paragraph | A 1-2 sentence description summarizing life on campus. |
-| **"Discover School Life" Link** | Target URL `#` | Link (URL) | Destination URL for the primary gallery or school activities page. |
+| **Section Tagline** | Small uppercase tag label on the top left. | `"School Life At SKPS"` | `"VIBRANT STUDENT LIFE"` |
+| **Main Header (Regular Text)** | First part of the main section headline. | `"Where young minds become"` | `"Empowering children to become"` |
+| **Cursive Emphasis Text** | Bottom stylized handwritten cursive portion of the main headline. | `"Future Ready"` | `"Lifelong Learners"` or `"Leaders of Tomorrow"` |
+| **Short Description Paragraph** | A 1-2 sentence description of life on campus, routine, and discipline. | `"A refined school environment built around joyful learning, disciplined routines, creative exposure, and the confidence every child deserves."` | `"A nurturing school environment built on values, joyful learning, sports discipline, and artistic exposure, helping every child discover their true potential."` |
+| **Internal Metric 1** | Student strength highlight. | `1000+ Students` | `1200+ Confident Students` |
+| **Internal Metric 2** | Faculty highlight. | `50+ Faculty` | `65+ Caring Educators` |
+| **Internal Metric 3** | Results highlight. | `100% Results` | `100% Excellence Rate` |
+| **Discover Button Text & URL** | Main call-to-action button and redirect target. | Button: `"Discover school life"` <br>Link: `#` | Button: `"DISCOVER SCHOOL LIFE"` or `"EXPLORE ACTIVITIES"` <br>Link: `/school-life` or `/campus-gallery` |
 
 ---
 
-### 6. Floating Announcement & Quick Links Marquee
-*Located in [page.tsx (Lines 313-355)](app/page.tsx)*
+### 6. Floating Quick Links Marquee
+*Code Location: [page.tsx (Lines 364-406)](file:///Users/mrrayan07/Desktop/SK_School/app/page.tsx#L364-L406)*
 
-A scrolling banner containing quick links to announcements or documents.
+A scrolling link banner showing vital school files and portal links. The administration needs to supply real PDF document files or web addresses for these links.
 
-| Item Link Name | Current Target Placeholder | Input Type | Required Asset / URL Link |
+| Item No. | Quick Link Display Title | Target Document / URL Requirement | Example Resource Link |
 | :--- | :--- | :--- | :--- |
-| **2026-27 Fees** | `#` | Link / Document | Fee structure PDF file or page URL. |
-| **Notification** | `#` | Link / Document | Latest official announcements page. |
-| **Syllabus** | `#` | Link / Document | Curriculum download links or page. |
-| **Bus Routes** | `#` | Link / Document | Transport details PDF or page. |
-| **Brochure-2026** | `#` | Link / Document | School marketing brochure PDF. |
-| **NIRF** | `#` | Link / Document | NIRF accreditation page or certification files. |
-| **Admissions Open** | `#` | Link / Page | Registration form or online application portal. |
+| **Link 1** | `"2026-27 Fees"` | Official PDF outlining fee structure for the new school year. | `/docs/skps_fee_structure_2026_27.pdf` |
+| **Link 2** | `"Notification"` | Latest school circular or announcements page. | `/news-events/circulars` |
+| **Link 3** | `"Syllabus"` | Curriculum index or CBSE syllabus downloads page. | `/docs/syllabus_academic_2026.pdf` |
+| **Link 4** | `"Bus Routes"` | School bus route list and pick-up/drop timing sheet. | `/docs/school_transportation_routes.pdf` |
+| **Link 5** | `"Brochure-2026"` | Official school marketing and informational prospectus brochure. | `/docs/skps_admission_brochure_2026.pdf` |
+| **Link 6** | `"NIRF"` / `"CBSE Disclosures"` | Mandatory CBSE disclosure document or accreditation records. | `/docs/cbse_mandatory_public_disclosure.pdf` |
+| **Link 7** | `"Admissions Open"` | External registration portal or internal query form. | `/admissions/application-form` |
 
 ---
 
-### 7. News & Events Gallery & Ticker
-*Located in [page.tsx (Lines 357-495)](app/page.tsx)*
+### 7. News & Events Gallery & Description
+*Code Location: [page.tsx (Lines 408-456, 458-513)](file:///Users/mrrayan07/Desktop/SK_School/app/page.tsx#L408-L456)*
 
-Represents current announcements, event photo galleries, and news tickers.
+Shows upcoming circulars and quick gallery items.
 
-| Data Item | Current Placeholder Value | Input Type | Required Specification / Recommendation |
+| Requirement / Heading | Field Description | Current General Value | Example Real Data (SKPS Hukkeri) |
 | :--- | :--- | :--- | :--- |
-| **Events Styled Title Image** | `/section-4/events.png` | Image File | Custom stylized title word graphics (e.g. outline styling of "Events"). |
-| **Gallery Circle Image 1** | Unsplash photo (`Convocation Ceremony`) | Image File | Photo showing school graduation, academics, or formal events. Dimensions: `600x600px` (square cropped). |
-| **Gallery Circle Image 2** | Unsplash photo (`Guest Speakers`) | Image File | Photo of classroom activities, seminars, or cultural assemblies. Dimensions: `600x600px` (square cropped). |
-| **Gallery Circle Image 3** | Unsplash photo (`Sports Team`) | Image File | Photo of sports, athletics, or outdoor campus activities. Dimensions: `600x600px` (square cropped). |
-| **Gallery Circle 4 Target** | `"Explore"` | Link (URL) | Target link destination when users click the gradient "Explore" circle. |
-| **Short Summary Copy** | `"Shri Kadasiddheshwar Public School is committed to fostering academic excellence, creative expression..."` | Paragraph | Summary copy describing updates, press highlights, or event engagement. |
-| **Ticker Event 025** | Title: `"SKPS Welcomes New Academic Session"`<br>Date: `"December 13, 2025"` | Text + Date | Headline of recent/upcoming announcement. |
-| **Ticker Event 026** | Title: `"SKPS Annual Sports Meet 2026"`<br>Date: `"January 20, 2026"` | Text + Date | Headline of recent/upcoming announcement. |
-| **Ticker Event 027** | Title: `"SKPS Inter-School Science Exhibition"`<br>Date: `"February 15, 2026"` | Text + Date | Headline of recent/upcoming announcement. |
-| **Ticker Event 028** | Title: `"SKPS Cultural Fest & Alumni Meet"`<br>Date: `"March 05, 2026"` | Text + Date | Headline of recent/upcoming announcement. |
+| **Main Section Heading** | Title for the updates block. | `"News & Events"` | `"Academic News & Events"` |
+| **Section Summary Paragraph** | Short summary paragraph detailing educational programmes and commitment to student development. | `"Shri Kadasiddheshwar Public School is committed to fostering academic excellence, creative expression, and strong community values. We offer a diverse set of programmes and activities that help students grow intellectually, socially, and emotionally..."` | `"Keep up-to-date with our active school community. At SKPS, we celebrate academic breakthroughs, community service, sports trophies, and the vibrant creative milestones achieved by our students and staff throughout the session."` |
+| **Gallery Circle 1 Alt Tag** | Descriptive label for photo bubble 1. | `"Convocation Ceremony"` | `"High school students tossing caps at the Annual Convocation Ceremony"` |
+| **Gallery Circle 2 Alt Tag** | Descriptive label for photo bubble 2. | `"Guest Speakers"` | `"Principal welcoming guest lecturer at the SKPS Educational Seminar"` |
+| **Gallery Circle 3 Alt Tag** | Descriptive label for photo bubble 3. | `"Sports Team"` | `"SKPS Under-16 Football team celebrating victory in the district tournament"` |
+| **Explore Circle URL** | Destination of the interactive "Explore" circle. | Link: `#` | Link: `/gallery` or `/news-events/archives` |
 
 ---
 
-### 8. Under Construction / Launch Page
-*Located in [under-construction/page.tsx](app/under-construction/page.tsx)*
+### 8. Upcoming Events Scrolling Ticker
+*Code Location: [page.tsx (Lines 480-508)](file:///Users/mrrayan07/Desktop/SK_School/app/page.tsx#L480-L508)*
 
-The landing page indicating work is in progress.
+A horizontal ticker displaying upcoming schedules. The client needs to supply 4 real events with official dates.
 
-| Data Item | Current Placeholder Value | Input Type | Required Specification / Recommendation |
+| Event No. | Event ID Code | Event Title Text | Event Target Date |
 | :--- | :--- | :--- | :--- |
-| **Banner Notice** | `"We're building something new — launching soon."` | Plain Text | Short top alert notice. |
-| **Headline** | `"Website Under Construction"` | Plain Text | Main page heading. |
-| **Body Copy** | `"We're working hard to bring you a great experience. Please check back soon."` | Paragraph | Detail message explaining the maintenance state. |
+| **Event 1** | `"025"` | `"SKPS Welcomes New Academic Session"` | `"December 13, 2025"` (or e.g. `"June 15, 2026"`) |
+| **Event 2** | `"026"` | `"SKPS Annual Sports Meet 2026"` | `"January 20, 2026"` (or e.g. `"November 10, 2026"`) |
+| **Event 3** | `"027"` | `"SKPS Inter-School Science Exhibition"` | `"February 15, 2026"` (or e.g. `"December 05, 2026"`) |
+| **Event 4** | `"028"` | `"SKPS Cultural Fest & Alumni Meet"` | `"March 05, 2026"` (or e.g. `"January 18, 2027"`) |
 
 ---
 
-### 9. Missing Global Elements (Recommendations)
-During the codebase review, it was identified that some standard school website components are currently omitted. The client should prepare content for these should they wish to implement them:
+### 9. Campus Life Photo Grid & Celebrations
+*Code Location: [page.tsx (Lines 515-644)](file:///Users/mrrayan07/Desktop/SK_School/app/page.tsx#L515-L644)*
 
-1. **Global Footer:**
-   - **Contact Information:** Official mailing address, phone numbers (administrative, admissions), and email addresses.
-   - **Affiliation Data:** Board affiliation details (e.g. CBSE affiliation number, registration codes).
-   - **Quick Links:** Sitemap directory, terms of service, privacy policy, and developer credits.
-   - **Social Links:** Links to official Facebook, Instagram, YouTube, or Twitter pages.
-2. **Admissions Page Content:**
-   - Detailed application guidelines, age eligibility charts, required documents checklist, online application portal link.
-3. **Faculty Directory:**
-   - Names, qualifications, roles, and profiles of key administrative staff (e.g. Principal's message, management committee).
-4. **Mandatory Disclosures:**
-   - Academic calendars, PTA committee details, safety certificates (fire, sanitation, building safety), and book list disclosures (standard CBSE requirement).
+An editorial asymmetrical photo grid highlighting festivals, assemblies, and celebrations on campus.
+
+| Requirement / Heading | Field Description | Current General Value | Example Real Data (SKPS Hukkeri) |
+| :--- | :--- | :--- | :--- |
+| **Section Tagline** | Tiny uppercase label on the top left. | `"Campus Life"` | `"CAMPUS LIFE & VALUES"` |
+| **Section Headline** | Main heading of the grid section. | `"Life at SKPS"` | `"Learning, Celebrating & Growing"` |
+| **Section Header Paragraph** | General description of extracurriculars, national events, and morals. | `"At Shri Kadasiddheshwar Public School, Hukkeri, education goes beyond academics to embrace our rich cultural heritage and moral foundations. Through festive celebrations like Ganesh Chaturthi and national programs, we instill deep-rooted values..."` | `"At SKPS Hukkeri, we prioritize building strong moral values, national pride, and respect for our cultural heritage. From grand national day programs to traditional festivities, our campus serves as a platform for holistic value-based learning."` |
+| **Gallery View More URL** | Link for the "View Full Gallery" button. | Link: `/under-construction` | Link: `/gallery` or `/campus-life` |
+| **Grid Item 1: Tag / Label** | Small tag overlaying Image 1. | `"Annual Celebration"` | `"Annual Function"` |
+| **Grid Item 1: Title** | Headline overlaying Image 1. | `"Teachers' Day Ceremony"` | `"Teachers' Day Celebration"` |
+| **Grid Item 1: Description** | Copy overlaying Image 1. | `"Students honor their mentors with heartfelt presentations and spoken-word tributes on the school stage."` | `"Our student council organizes special stage dramas, dances, and gratitude speeches to honor the dedication of our teaching staff."` |
+| **Grid Item 2: Tag / Label** | Small tag overlaying Image 2. | `"National Programme"` | `"Independence Day"` |
+| **Grid Item 2: Title** | Headline overlaying Image 2. | `"Azadi Ka Amrit Mahotsav"` | `"79th Independence Day Celebrations"` |
+| **Grid Item 2: Description** | Copy overlaying Image 2. | `"The entire school community assembles to celebrate India's independence milestone with pride and patriotism."` | `"Students present patriotic songs, parade drills, and traditional regional dances in the main assembly yard, honoring our freedom fighters."` |
+| **Grid Item 3: Tag & Title** | Small overlay text for Image 3. | Tag: `"Gratitude"` <br>Title: `"Honouring Our Guides"` | Tag: `"Moral Education"` <br>Title: `"Respecting Elders & Gurus"` |
+| **Grid Item 4: Tag & Title** | Small overlay text for Image 4. | Tag: `"Discipline"` <br>Title: `"Morning Assembly"` | Tag: `"School Discipline"` <br>Title: `"Daily Morning Assembly"` |
+| **Grid Item 5: Tag & Title** | Small overlay text for Image 5. | Tag: `"Values"` <br>Title: `"Morning Prayer"` | Tag: `"Inner Peace"` <br>Title: `"Daily Meditation & Prayer"` |
+| **Grid Item 6: Tag / Label** | Small tag overlaying bottom wide Image. | `"Cultural Festival"` | `"Festival Celebration"` |
+| **Grid Item 6: Title** | Headline overlaying bottom wide Image. | `"Ganesh Chaturthi Celebrations"` | `"Ganesh Chaturthi Celebrations"` |
+| **Grid Item 6: Description** | Copy overlaying bottom wide Image. | `"Community dignitaries join our school family to celebrate Ganesh Chaturthi, fostering cultural pride and unity among students."` | `"The school installs Lord Ganesha's clay idol on campus, conducting traditional prayers and educational sessions explaining the cultural significance of the festival."` |
+
+---
+
+### 10. Global Footer Section
+*Code Location: [layout.tsx (Lines 137-330)](file:///Users/mrrayan07/Desktop/SK_School/app/layout.tsx#L137-L330)*
+
+Located on every page bottom. Contains contact info, legal badges, social links, and working hours.
+
+| Requirement / Heading | Field Description | Current General Value | Example Real Data (SKPS Hukkeri) |
+| :--- | :--- | :--- | :--- |
+| **School Branding Subtitle** | Brand location text. | `"Public School, Hukkeri"` | `"Public School, Hukkeri (Yamkanmardi Road)"` |
+| **Description Copy** | A brief 2-sentence school overview. | `"Affiliated with the Central Board of Secondary Education (CBSE), New Delhi. Shri Kadasiddheshwar Public School is dedicated to fostering academic excellence, character development, and holistic growth in Hukkeri, Karnataka."` | `"Affiliated with the Central Board of Secondary Education (CBSE), New Delhi. Shri Kadasiddheshwar Public School is committed to creating an environment that fosters critical thinking, moral uprightness, and physical fitness in Hukkeri."` |
+| **Credential Badge 1** | School's CBSE affiliation code. | `"CBSE Affiliation: 830385"` | `"CBSE Affiliation No: 830385"` |
+| **Credential Badge 2** | School's board index code. | `"School Code: 45314"` | `"CBSE School Code: 45314"` |
+| **Credential Badge 3** | Establishment year. | `"Est. 2003"` | `"Established: 2003"` |
+| **Admissions Office Address** | Physical address of the main administration. | `"Hukkeri, Belagavi, KA — 591309"` | `"Kadasiddheshwar Nagar, Yamkanmardi Road, Hukkeri, Belagavi District, Karnataka — 591309"` |
+| **Admissions Phone Number** | Official phone number (active hours). | `"+91 8333-256567"` | `"+91 8333-256567"` (or mobile: `"+91 9448155255"`) |
+| **Admissions Email** | Public email address. | `"office@skpshukkeri.edu.in"` | `"office@skpshukkeri.edu.in"` (or `"admissions@skpshukkeri.edu.in"`) |
+| **Office Hours** | Opening hours for general inquiries. | `"Mon – Sat: 9:00 AM – 3:30 PM, Sunday: Closed"` | `"Monday – Saturday: 8:30 AM – 3:30 PM, Sunday: Closed"` |
+| **Location Map Iframe** | The Google Maps embedded address. | Targets: `Shri Kadasiddheshwar Public School, Hukkeri` embed query. | Keep as is (iframe points directly to the real school location in Hukkeri). |
+| **Google Maps Link** | Anchor tag to open maps in browser. | `"https://maps.google.com/?q=Shri%20Kadasiddheshwar%20Public%20School,%20Hukkeri"` | `"https://maps.google.com/?q=Shri%20Kadasiddheshwar%20Public%20School,%20Hukkeri"` |
+| **Footer Copyright Notice** | Ownership info. | `"&copy; {Year} Shri Kadasiddheshwar Public School, Hukkeri. All rights reserved."` | `"&copy; 2026 Shri Kadasiddheshwar Public School, Hukkeri. All rights reserved."` |
+| **Footer Affiliation Status** | Text details. | `"Affiliation Status: Permanent School Affiliation (Affiliated to CBSE, Delhi)"` | `"Affiliated to the Central Board of Secondary Education, New Delhi (Affiliation No. 830385)"` |
+| **Social Links** | URL links for social profile pages. | Facebook, Instagram, and YouTube (currently pointing to placeholders like `facebook.com`). | - FB: `https://facebook.com/skpshukkeriofficial`<br>- IG: `https://instagram.com/skpshukkeriofficial`<br>- YT: `https://youtube.com/@skpshukkeri` |
+
+---
+
+### 11. Website Under Construction Page
+*Code Location: [under-construction/page.tsx (Lines 11-59)](file:///Users/mrrayan07/Desktop/SK_School/app/under-construction/page.tsx#L11-L59)*
+
+Used for routes that are still under development (like Admissions, About page, etc.).
+
+| Requirement / Heading | Field Description | Current General Value | Example Real Data (SKPS Hukkeri) |
+| :--- | :--- | :--- | :--- |
+| **Top Alert Notification** | Scrolling text banner at the top of page. | `"We're building something new — launching soon."` | `"Notice: Academic details and portal uploads are currently updating."` |
+| **Page Breadcrumb Tag** | Header label block. | `"Shri Kadasiddheshwar Public School, Hukkeri"` | `"Shri Kadasiddheshwar Public School, Hukkeri"` |
+| **Main Headline** | Big centered page header. | `"Website Under Construction"` | `"Page Under Construction"` |
+| **Main Description Copy** | Center instruction paragraph. | `"We're working hard to bring you a great experience. Please check back soon."` | `"Our team is currently updating class schedules, teacher directories, and downloadable syllabus forms. We will go live shortly."` |
+| **Progress Subtext** | Progress bar subtext. | `"Updates are in progress."` | `"Updating databases..."` |
