@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Dancing_Script } from "next/font/google";
 import Link from "next/link";
 import Navbar from "./Navbar";
+import WelcomeAnimation from "./WelcomeAnimation";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -40,6 +41,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#111111" />
       </head>
       <body className="min-h-full flex flex-col bg-white">
+        <WelcomeAnimation />
 
         {/* ── NAVBAR ─────────────────────────────────────────────── */}
         <Navbar />
