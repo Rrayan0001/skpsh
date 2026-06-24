@@ -95,6 +95,15 @@ export default function Navbar() {
             alt="School Logo"
             className="h-[38px] w-auto object-contain shrink-0 sm:h-[44px] lg:h-[40px] xl:h-[46px]"
           />
+          {/* School name on mobile/tablet (below lg) */}
+          <div className="flex lg:hidden flex-col text-left">
+            <span className="text-[12px] sm:text-[13px] font-extrabold leading-tight tracking-tight text-[var(--brand-ink)]">
+              SK Public School
+            </span>
+            <span className="text-[8px] sm:text-[9px] font-semibold leading-none tracking-wide text-[var(--brand-primary)]">
+              Hukkeri
+            </span>
+          </div>
           {/* School name: hidden on lg to give nav room, visible at xl+ */}
           <div className="hidden xl:flex flex-col text-left">
             <span className="text-[13px] font-extrabold leading-tight tracking-tight text-[var(--brand-ink)]">
