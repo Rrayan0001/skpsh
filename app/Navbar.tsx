@@ -66,6 +66,23 @@ export default function Navbar() {
 
   return (
     <header className="w-full sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100/80 transition-all duration-200">
+      {/* Top Banner / Info Bar */}
+      <div className="w-full bg-[var(--brand-primary)] text-white text-[10px] sm:text-[11.5px] font-medium py-1.5 px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-4 border-b border-blue-900/10 shrink-0">
+        <div className="flex items-center gap-1.5 text-center sm:text-left">
+          <svg className="w-3.5 h-3.5 opacity-80 shrink-0 hidden sm:inline-block" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" />
+          </svg>
+          <span className="tracking-wide uppercase font-bold text-white/95">
+            C. S. Tubachi Education Society&apos;s
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="bg-white/15 px-2 py-0.5 rounded text-[9.5px] sm:text-[10px] font-bold tracking-wider uppercase text-white/90">
+            CBSE Affiliated No. 830729
+          </span>
+        </div>
+      </div>
+
       {/* Hamburger toggle */}
       <input type="checkbox" id="mobile-menu-toggle" className="peer sr-only" />
 

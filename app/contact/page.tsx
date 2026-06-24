@@ -30,7 +30,7 @@ export default function ContactPage() {
                 <p className="text-[12px] font-bold text-[var(--brand-primary)] uppercase tracking-wider mb-1">Address</p>
                 <p className="text-[15px] font-medium text-[var(--hp-ink)]">
                   Hukkeri, Bus Stand Road<br />
-                  Dist: Belagavi, Karnataka – 591305
+                  Dist: Belagavi, Karnataka – 591309
                 </p>
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function ContactPage() {
                 <p className="text-[12px] font-bold text-[var(--brand-primary)] uppercase tracking-wider mb-1">Affiliation</p>
                 <p className="text-[15px] font-medium text-[var(--hp-ink)]">
                   Affiliated to <strong>CBSE</strong><br />
-                  Affiliation No: 830305
+                  Affiliation No: 830729
                 </p>
               </div>
             </div>

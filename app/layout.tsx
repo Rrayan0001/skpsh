@@ -84,7 +84,7 @@ export default function RootLayout({
                 {/* Badges */}
                 <div className="mt-6 flex flex-wrap gap-2">
                   <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-white/5 text-slate-300 border border-white/10">
-                    CBSE Affiliation: 830385
+                    CBSE Affiliation: 830729
                   </span>
                   <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-white/5 text-slate-300 border border-white/10">
                     School Code: 45314
