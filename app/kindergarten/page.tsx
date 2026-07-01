@@ -672,7 +672,7 @@ export default function KindergartenPage() {
             display: "flex", flexWrap: "wrap", gap: 6, justifyContent: "center", marginTop: 20
           }}>
             {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((l, idx) => (
-              <div key={l} className="bouncing" style={{
+              <div key={l} className="bouncing w-8 h-8 sm:w-10 sm:h-10 text-sm sm:text-lg" style={{
                 background: `hsl(${l.charCodeAt(0) * 10}, 70%, 60%)`,
                 borderRadius: 8,
                 display: "flex", alignItems: "center", justifyContent: "center",
@@ -680,7 +680,7 @@ export default function KindergartenPage() {
                 color: "white",
                 boxShadow: "0 2px 6px rgba(0,0,0,0.12)",
                 animationDelay: `${idx * 0.05}s`,
-              }} className="w-8 h-8 sm:w-10 sm:h-10 text-sm sm:text-lg">{l}</div>
+              }}>{l}</div>
             ))}
           </div>
 
@@ -724,7 +724,7 @@ export default function KindergartenPage() {
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", marginTop: 20 }}>
             {[1,2,3,4,5,6,7,8,9,10].map((n) => (
-              <div key={n} className="heartbeat" style={{
+              <div key={n} className="heartbeat w-8 h-8 sm:w-11 sm:h-11 text-sm sm:text-lg" style={{
                 background: `hsl(${270 + n * 8}, 70%, 65%)`,
                 borderRadius: "50%",
                 display: "flex", alignItems: "center", justifyContent: "center",
@@ -732,7 +732,7 @@ export default function KindergartenPage() {
                 color: "white",
                 boxShadow: "0 3px 8px rgba(0,0,0,0.12)",
                 animationDelay: `${n * 0.12}s`,
-              }} className="w-8 h-8 sm:w-11 sm:h-11 text-sm sm:text-lg">{n}</div>
+              }}>{n}</div>
             ))}
           </div>
 
