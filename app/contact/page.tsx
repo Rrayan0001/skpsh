@@ -30,7 +30,7 @@ export default function ContactPage() {
                 <p className="text-[12px] font-bold text-[var(--brand-primary)] uppercase tracking-wider mb-1">Address</p>
                 <p className="text-[15px] font-medium text-[var(--hp-ink)]">
                   Hukkeri, Bus Stand Road<br />
-                  Dist: Belagavi, Karnataka – 591309
+                  Dist: Belagavi, Karnataka – 591305
                 </p>
               </div>
             </div>
@@ -44,12 +44,14 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="text-[12px] font-bold text-[var(--brand-primary)] uppercase tracking-wider mb-1">Phone</p>
-                <a href="tel:+917795043124" className="block text-[15px] font-medium text-[var(--hp-ink)] hover:text-[var(--brand-primary)] transition">
-                  +91 77950 43124
-                </a>
-                <a href="tel:+918073054377" className="block text-[15px] font-medium text-[var(--hp-ink)] hover:text-[var(--brand-primary)] transition">
-                  +91 8073 054 377
-                </a>
+                <div className="space-y-2">
+                  <a href="tel:+917795043124" className="block text-[15px] font-medium text-[var(--hp-ink)] hover:text-[var(--brand-primary)] transition">
+                    +91 77950 43124 <span className="text-slate-400 text-xs font-semibold">(Shri. Raghavendr Kulkarni, Principal)</span>
+                  </a>
+                  <a href="tel:+918073054377" className="block text-[15px] font-medium text-[var(--hp-ink)] hover:text-[var(--brand-primary)] transition">
+                    +91 8073 054 377 <span className="text-slate-400 text-xs font-semibold">(Smt. Anita, Vice-Principal)</span>
+                  </a>
+                </div>
               </div>
             </div>
 

@@ -157,8 +157,8 @@ export default function Navbar() {
                 <Link href="/about/about-school" className={dropdownItem}>About the School</Link>
                 <Link href="/about/vision-mission" className={dropdownItem}>Vision &amp; Mission</Link>
                 <Link href="/about/chairmans-message" className={dropdownItem}>Chairman&apos;s Message</Link>
-                <Link href="/about/secretarys-message" className={dropdownItem}>Secretary&apos;s Message</Link>
                 <Link href="/about/principals-message" className={dropdownItem}>Principal&apos;s Message</Link>
+                <Link href="/about/secretarys-message" className={dropdownItem}>Secretary&apos;s Message</Link>
                 <Link href="/about/school-management" className={dropdownItem}>School Management</Link>
                 <Link href="/about/visiting-hours" className={dropdownItem}>Visiting Hours</Link>
                 <Link href="/about/school-timing" className={dropdownItem}>School Timing</Link>
@@ -166,23 +166,25 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Admission */}
+          {/* Student's Corner */}
           <div className="relative group">
             <button
               className={`flex items-center gap-1 px-2 ${linkBase} cursor-pointer bg-transparent border-none ${
-                isActivePrefix("/admission") ? activeStyle : inactiveStyle
+                isActivePrefix("/students-corner") || isActivePrefix("/admission") ? activeStyle : inactiveStyle
               }`}
             >
-              <span>Admission</span>
+              <span>Student&apos;s Corner</span>
               {chevronDown}
             </button>
-            {isActivePrefix("/admission") && (
+            {(isActivePrefix("/students-corner") || isActivePrefix("/admission")) && (
               <span className="absolute bottom-0 left-2 right-2 h-[2.5px] rounded-full bg-[var(--brand-primary)]" />
             )}
             <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-52 hidden group-hover:block z-50">
               <div className="bg-white border border-slate-100 rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] py-1.5">
                 <Link href="/admission/procedure" className={dropdownItem}>Admission Procedure</Link>
-                <Link href="/admission/fees-structure" className={dropdownItem}>Fees Structure</Link>
+                <Link href="/students-corner/achievements" className={dropdownItem}>Achievements</Link>
+                <Link href="/students-corner/assembly" className={dropdownItem}>Assembly</Link>
+                <Link href="/students-corner/birthday-celebrations" className={dropdownItem}>Birth Day Celebrations</Link>
               </div>
             </div>
           </div>
@@ -191,19 +193,21 @@ export default function Navbar() {
           <div className="relative group">
             <button
               className={`flex items-center gap-1 px-2 ${linkBase} cursor-pointer bg-transparent border-none ${
-                isActivePrefix("/academics") ? activeStyle : inactiveStyle
+                isActivePrefix("/academics") || isActivePrefix("/kindergarten") ? activeStyle : inactiveStyle
               }`}
             >
               <span>Academics</span>
               {chevronDown}
             </button>
-            {isActivePrefix("/academics") && (
+            {(isActivePrefix("/academics") || isActivePrefix("/kindergarten")) && (
               <span className="absolute bottom-0 left-2 right-2 h-[2.5px] rounded-full bg-[var(--brand-primary)]" />
             )}
             <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-52 hidden group-hover:block z-50">
               <div className="bg-white border border-slate-100 rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] py-1.5">
+                <Link href="/kindergarten" className={dropdownItem}>KG (Kindergarten)</Link>
                 <Link href="/academics/academic-calendar" className={dropdownItem}>Academic Calendar</Link>
                 <Link href="/academics/curriculum" className={dropdownItem}>Curriculum</Link>
+                <Link href="/academics/transfer-certificate" className={dropdownItem}>Transfer Certificate</Link>
                 <Link href="/academics/time-table" className={dropdownItem}>Academic Time Table</Link>
                 <Link href="/academics/homework-policy" className={dropdownItem}>Home Work Policy</Link>
                 <Link href="/academics/staff-details" className={dropdownItem}>Staff Details</Link>
@@ -228,6 +232,7 @@ export default function Navbar() {
               <div className="bg-white border border-slate-100 rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] py-1.5">
                 <Link href="/examination/syllabus" className={dropdownItem}>Syllabus</Link>
                 <Link href="/examination/exam-time-table" className={dropdownItem}>Exam Time Table</Link>
+                <Link href="/examination/parents-squad" className={dropdownItem}>Parent&apos;s Squad</Link>
                 <Link href="/examination/model-question-papers" className={dropdownItem}>Model Question Papers</Link>
                 <Link href="/examination/examination-circulars" className={dropdownItem}>Examination Circulars</Link>
               </div>
@@ -249,27 +254,25 @@ export default function Navbar() {
             )}
             <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-52 hidden group-hover:block z-50">
               <div className="bg-white border border-slate-100 rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] py-1.5">
-                <Link href="/facilities/library" className={dropdownItem}>Library</Link>
-                <Link href="/facilities/assembly" className={dropdownItem}>Assembly</Link>
-                <Link href="/facilities/sports-ground" className={dropdownItem}>Sports Ground</Link>
                 <Link href="/facilities/science-lab" className={dropdownItem}>Science Lab</Link>
-                <Link href="/facilities/computer-lab" className={dropdownItem}>Computer Lab</Link>
-                <Link href="/facilities/mathematics-lab" className={dropdownItem}>Mathematics Lab</Link>
                 <Link href="/facilities/chemistry-lab" className={dropdownItem}>Chemistry Lab</Link>
+                <Link href="/facilities/computer-lab" className={dropdownItem}>Computer Lab</Link>
+                <Link href="/facilities/library" className={dropdownItem}>Library</Link>
+                <Link href="/facilities/sports-ground" className={dropdownItem}>Sports Ground</Link>
                 <Link href="/facilities/art-craft" className={dropdownItem}>Art &amp; Craft (Drawing)</Link>
                 <Link href="/facilities/dance-classes" className={dropdownItem}>Dance Classes (Grade I–III)</Link>
               </div>
             </div>
           </div>
 
-          {/* Cultural Activities */}
+          {/* Activities */}
           <div className="relative group">
             <button
               className={`flex items-center gap-1 px-2 ${linkBase} cursor-pointer bg-transparent border-none whitespace-nowrap ${
                 isActivePrefix("/cultural-activities") ? activeStyle : inactiveStyle
               }`}
             >
-              <span>Cultural Activities</span>
+              <span>Activities</span>
               {chevronDown}
             </button>
             {isActivePrefix("/cultural-activities") && (
@@ -397,23 +400,25 @@ export default function Navbar() {
               <Link href="/about/about-school" className={mobileLink}>About the School</Link>
               <Link href="/about/vision-mission" className={mobileLink}>Vision &amp; Mission</Link>
               <Link href="/about/chairmans-message" className={mobileLink}>Chairman&apos;s Message</Link>
-              <Link href="/about/secretarys-message" className={mobileLink}>Secretary&apos;s Message</Link>
               <Link href="/about/principals-message" className={mobileLink}>Principal&apos;s Message</Link>
+              <Link href="/about/secretarys-message" className={mobileLink}>Secretary&apos;s Message</Link>
               <Link href="/about/school-management" className={mobileLink}>School Management</Link>
               <Link href="/about/visiting-hours" className={mobileLink}>Visiting Hours</Link>
               <Link href="/about/school-timing" className={mobileLink}>School Timing</Link>
             </div>
           </details>
 
-          {/* Admission */}
+          {/* Student's Corner */}
           <details className="group/mob relative">
             <summary className="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-50 transition cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-              <span>Admission</span>
+              <span>Student&apos;s Corner</span>
               {chevronDownMobile}
             </summary>
             <div className="pl-6 pr-4 py-1.5 flex flex-col gap-0.5 border-l-2 border-[var(--brand-primary-light)] ml-4">
               <Link href="/admission/procedure" className={mobileLink}>Admission Procedure</Link>
-              <Link href="/admission/fees-structure" className={mobileLink}>Fees Structure</Link>
+              <Link href="/students-corner/achievements" className={mobileLink}>Achievements</Link>
+              <Link href="/students-corner/assembly" className={mobileLink}>Assembly</Link>
+              <Link href="/students-corner/birthday-celebrations" className={mobileLink}>Birth Day Celebrations</Link>
             </div>
           </details>
 
@@ -424,8 +429,10 @@ export default function Navbar() {
               {chevronDownMobile}
             </summary>
             <div className="pl-6 pr-4 py-1.5 flex flex-col gap-0.5 border-l-2 border-[var(--brand-primary-light)] ml-4">
+              <Link href="/kindergarten" className={mobileLink}>KG (Kindergarten)</Link>
               <Link href="/academics/academic-calendar" className={mobileLink}>Academic Calendar</Link>
               <Link href="/academics/curriculum" className={mobileLink}>Curriculum</Link>
+              <Link href="/academics/transfer-certificate" className={mobileLink}>Transfer Certificate</Link>
               <Link href="/academics/time-table" className={mobileLink}>Academic Time Table</Link>
               <Link href="/academics/homework-policy" className={mobileLink}>Home Work Policy</Link>
               <Link href="/academics/staff-details" className={mobileLink}>Staff Details</Link>
@@ -441,6 +448,7 @@ export default function Navbar() {
             <div className="pl-6 pr-4 py-1.5 flex flex-col gap-0.5 border-l-2 border-[var(--brand-primary-light)] ml-4">
               <Link href="/examination/syllabus" className={mobileLink}>Syllabus</Link>
               <Link href="/examination/exam-time-table" className={mobileLink}>Exam Time Table</Link>
+              <Link href="/examination/parents-squad" className={mobileLink}>Parent&apos;s Squad</Link>
               <Link href="/examination/model-question-papers" className={mobileLink}>Model Question Papers</Link>
               <Link href="/examination/examination-circulars" className={mobileLink}>Examination Circulars</Link>
             </div>
@@ -453,22 +461,20 @@ export default function Navbar() {
               {chevronDownMobile}
             </summary>
             <div className="pl-6 pr-4 py-1.5 flex flex-col gap-0.5 border-l-2 border-[var(--brand-primary-light)] ml-4">
-              <Link href="/facilities/library" className={mobileLink}>Library</Link>
-              <Link href="/facilities/assembly" className={mobileLink}>Assembly</Link>
-              <Link href="/facilities/sports-ground" className={mobileLink}>Sports Ground</Link>
               <Link href="/facilities/science-lab" className={mobileLink}>Science Lab</Link>
-              <Link href="/facilities/computer-lab" className={mobileLink}>Computer Lab</Link>
-              <Link href="/facilities/mathematics-lab" className={mobileLink}>Mathematics Lab</Link>
               <Link href="/facilities/chemistry-lab" className={mobileLink}>Chemistry Lab</Link>
+              <Link href="/facilities/computer-lab" className={mobileLink}>Computer Lab</Link>
+              <Link href="/facilities/library" className={mobileLink}>Library</Link>
+              <Link href="/facilities/sports-ground" className={mobileLink}>Sports Ground</Link>
               <Link href="/facilities/art-craft" className={mobileLink}>Art &amp; Craft (Drawing)</Link>
               <Link href="/facilities/dance-classes" className={mobileLink}>Dance Classes (Grade I–III)</Link>
             </div>
           </details>
 
-          {/* Cultural Activities */}
+          {/* Activities */}
           <details className="group/mob relative">
             <summary className="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-slate-50 transition cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-              <span>Cultural Activities</span>
+              <span>Activities</span>
               {chevronDownMobile}
             </summary>
             <div className="pl-6 pr-4 py-1.5 flex flex-col gap-0.5 border-l-2 border-[var(--brand-primary-light)] ml-4">
@@ -512,6 +518,7 @@ export default function Navbar() {
           >
             Mandatory Disclosure
           </Link>
+
 
           {/* Sports */}
           <Link

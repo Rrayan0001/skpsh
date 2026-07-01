@@ -12,7 +12,7 @@ const documents = [
     icon: "📜",
   },
   {
-    title: "Society/Trust Bye Laws",
+    title: "Society/Trust Bay Laws",
     href: "/mandatory-disclosure/society-trust-bye-laws",
     icon: "📋",
   },
@@ -52,9 +52,9 @@ const documents = [
     icon: "💧",
   },
   {
-    title: "Students",
-    href: "/mandatory-disclosure/students",
-    icon: "🎓",
+    title: "Annual Report",
+    href: "/mandatory-disclosure/annual-report",
+    icon: "📊",
   },
 ];
 
