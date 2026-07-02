@@ -223,6 +223,37 @@ export default function KindergartenPage() {
         .sparkle-anim { animation: sparkle var(--delay, 2s) ease-in-out infinite; }
         .leaf { animation: leafFall var(--duration, 6s) linear infinite; animation-delay: var(--delay, 0s); }
 
+        /* SWINGING MONKEY DECOR */
+        .monkey-swing-container {
+          position: fixed;
+          top: 75px;
+          left: 10px;
+          z-index: 40;
+          pointer-events: none;
+          transform: scale(0.65);
+          transform-origin: top left;
+        }
+        @media (min-width: 1024px) {
+          .monkey-swing-container {
+            top: 85px;
+            left: 30px;
+            transform: scale(1.1);
+          }
+        }
+        .monkey-swing-wrapper {
+          pointer-events: auto;
+          cursor: pointer;
+          animation: monkeySwing 3s ease-in-out infinite;
+          transform-origin: 50% 0;
+          transition: transform 0.3s ease;
+        }
+        .monkey-swing-wrapper:hover {
+          transform: scale(1.05);
+        }
+        .monkey-swing-wrapper:active {
+          transform: scale(0.95);
+        }
+
         /* SECTION TITLE */
         .kg-title {
           font-family: 'Bubblegum Sans', cursive;
@@ -459,6 +490,15 @@ export default function KindergartenPage() {
             }} />
           </div>
         </>
+      )}
+
+      {/* ── SWINGING MONKEY (fixed, responsive) ── */}
+      {isClient && (
+        <div className="monkey-swing-container">
+          <div className="monkey-swing-wrapper">
+            <MonkeySVG />
+          </div>
+        </div>
       )}
 
       {/* ── FOREGROUND TREES (parallax) ── */}
@@ -1279,3 +1319,54 @@ function BirdSVG() {
     </svg>
   );
 }
+
+function MonkeySVG() {
+  return (
+    <svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: 100, height: "auto" }}>
+      {/* Vine/Rope from top */}
+      <line x1="50" y1="0" x2="50" y2="68" stroke="#4CAF50" strokeWidth="3" strokeLinecap="round" />
+      {/* Vine leaves */}
+      <path d="M50 20 Q40 15 42 10 Q50 15 50 20" fill="#2E7D32" />
+      <path d="M50 40 Q60 35 58 30 Q50 35 50 40" fill="#2E7D32" />
+      
+      {/* Tail */}
+      <path d="M62 108 C 75 110, 80 120, 72 128 C 65 135, 60 125, 66 118" stroke="#8D6E63" strokeWidth="4" strokeLinecap="round" fill="none" />
+      
+      {/* Arms */}
+      {/* Left arm holding the vine */}
+      <path d="M38 88 Q32 75 50 68" stroke="#8D6E63" strokeWidth="5.5" strokeLinecap="round" fill="none" />
+      {/* Right arm waving/hanging */}
+      <path d="M62 88 Q70 78 72 80" stroke="#8D6E63" strokeWidth="5" strokeLinecap="round" fill="none" />
+      
+      {/* Legs */}
+      <rect x="40" y="116" width="6" height="14" rx="3" fill="#7B5E57" />
+      <rect x="54" y="116" width="6" height="14" rx="3" fill="#7B5E57" />
+      
+      {/* Body */}
+      <ellipse cx="50" cy="102" rx="15" ry="16" fill="#8D6E63" />
+      <ellipse cx="50" cy="103" rx="10" ry="11" fill="#D7CCC8" />
+      
+      {/* Head */}
+      <circle cx="50" cy="78" r="12" fill="#8D6E63" />
+      {/* Face area */}
+      <ellipse cx="46" cy="79" rx="5.5" ry="6" fill="#D7CCC8" />
+      <ellipse cx="54" cy="79" rx="5.5" ry="6" fill="#D7CCC8" />
+      <ellipse cx="50" cy="82" rx="7.5" ry="5" fill="#D7CCC8" />
+      
+      {/* Ears */}
+      <circle cx="38" cy="78" r="4.5" fill="#8D6E63" />
+      <circle cx="38" cy="78" r="2.5" fill="#FFCDD2" />
+      <circle cx="62" cy="78" r="4.5" fill="#8D6E63" />
+      <circle cx="62" cy="78" r="2.5" fill="#FFCDD2" />
+      
+      {/* Eyes */}
+      <circle cx="46" cy="77" r="1.5" fill="#212121" />
+      <circle cx="54" cy="77" r="1.5" fill="#212121" />
+      
+      {/* Nose/Mouth */}
+      <path d="M48.5 81 Q50 82.5 51.5 81" stroke="#5D4037" strokeWidth="1" strokeLinecap="round" fill="none" />
+      <path d="M47 83.5 Q50 85.5 53 83.5" stroke="#5D4037" strokeWidth="1" strokeLinecap="round" fill="none" />
+    </svg>
+  );
+}
+
