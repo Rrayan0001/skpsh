@@ -1,10 +1,88 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Auto-focus search input when opened
+  useEffect(() => {
+    if (isSearchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [isSearchOpen]);
+
+  // Handle ESC key to close search, and Ctrl/Cmd + K to toggle
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsSearchOpen(false);
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setIsSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const SEARCHABLE_PAGES = [
+    { title: "Home", href: "/", category: "General", tags: "index welcome main start" },
+    { title: "🌴 Kindergarten (KG)", href: "/kindergarten", category: "Academics", tags: "kg child kids play group nursery class jungle adventure" },
+    { title: "About the School", href: "/about/about-school", category: "About Us", tags: "history info introduce details campus overview" },
+    { title: "Vision & Mission", href: "/about/vision-mission", category: "About Us", tags: "goal core values objective philosophy" },
+    { title: "Chairman's Message", href: "/about/chairmans-message", category: "About Us", tags: "speech leader founder words desk" },
+    { title: "Principal's Message", href: "/about/principals-message", category: "About Us", tags: "words leader desk head authority" },
+    { title: "Secretary's Message", href: "/about/secretarys-message", category: "About Us", tags: "words leader desk desk" },
+    { title: "School Management", href: "/about/school-management", category: "About Us", tags: "committee members trustees board list" },
+    { title: "Visiting Hours", href: "/about/visiting-hours", category: "About Us", tags: "time schedule meet principal authority appointment" },
+    { title: "School Timing", href: "/about/school-timing", category: "About Us", tags: "timing hours slot class assembly breaks schedule" },
+    { title: "Admission Procedure", href: "/admission/procedure", category: "Admission", tags: "enroll register entry join seat rules process criteria age" },
+    { title: "Fees Structure", href: "/admission/fees-structure", category: "Admission", tags: "cost tuition term payment structure charge installments" },
+    { title: "Achievements", href: "/students-corner/achievements", category: "Student's Corner", tags: "awards trophy prizes ranks sports success winners" },
+    { title: "Assembly", href: "/students-corner/assembly", category: "Student's Corner", tags: "morning prayer speech activities gather morning" },
+    { title: "Birth Day Celebrations", href: "/students-corner/birthday-celebrations", category: "Student's Corner", tags: "celebrate birth cake chocolate wishes student child" },
+    { title: "Academic Calendar", href: "/academics/academic-calendar", category: "Academics", tags: "dates holidays schedule events year planner diary" },
+    { title: "Curriculum", href: "/academics/curriculum", category: "Academics", tags: "cbse subject syllabus books courses study" },
+    { title: "Transfer Certificate (TC)", href: "/academics/transfer-certificate", category: "Academics", tags: "tc format application leaving withdraw certificate counter" },
+    { title: "Academic Time Table", href: "/academics/time-table", category: "Academics", tags: "period schedule classes timing slots day daily" },
+    { title: "Home Work Policy", href: "/academics/homework-policy", category: "Academics", tags: "assignment study rules practice daily load" },
+    { title: "Staff Details", href: "/academics/staff-details", category: "Academics", tags: "teachers faculty list qualifications experience principal vice-principal" },
+    { title: "Syllabus", href: "/examination/syllabus", category: "Examination", tags: "exams subjects portions test course curriculum exam portions" },
+    { title: "Exam Time Table", href: "/examination/exam-time-table", category: "Examination", tags: "dates dates schedule periodic test summative formative" },
+    { title: "Parent's Squad", href: "/examination/parents-squad", category: "Examination", tags: "parent squad meeting association support pta discussion" },
+    { title: "Model Question Papers", href: "/examination/model-question-papers", category: "Examination", tags: "sample question paper previous year practice test pdf" },
+    { title: "Examination Circulars", href: "/examination/examination-circulars", category: "Examination", tags: "notice news board dates exam rule notification" },
+    { title: "Science Lab", href: "/facilities/science-lab", category: "Facilities", tags: "physics chemistry biology experiment lab safety equipments" },
+    { title: "Chemistry Lab", href: "/facilities/chemistry-lab", category: "Facilities", tags: "chemicals gas experiments burner tubes lab safety" },
+    { title: "Computer Lab", href: "/facilities/computer-lab", category: "Facilities", tags: "pc internet typing programming software digital learning" },
+    { title: "Library", href: "/facilities/library", category: "Facilities", tags: "books reading novel story reference study silence cards journals" },
+    { title: "Sports Ground", href: "/facilities/sports-ground", category: "Facilities", tags: "play play ground games running track football cricket pitch court" },
+    { title: "Art & Craft (Drawing)", href: "/facilities/art-craft", category: "Facilities", tags: "painting colors draw sketches hobby design creative exhibition" },
+    { title: "Dance Classes (Grade I–III)", href: "/facilities/dance-classes", category: "Facilities", tags: "music steps classical folk junior extra-curricular expression" },
+    { title: "Sports & Games", href: "/sports", category: "General", tags: "p.e. physical education yoga athletics track indoor outdoor games" },
+    { title: "Contact Us", href: "/contact", category: "General", tags: "address phone mobile email principal vice-principal maps query location" },
+    { title: "Mandatory Public Disclosure", href: "/mandatory-disclosure", category: "Disclosure", tags: "cbse requirements rules building fire safety noc smc water certificate" },
+    { title: "Annual Report", href: "/mandatory-disclosure/annual-report", category: "Disclosure", tags: "report progress details achievement results annual board" },
+  ];
+
+  const filteredPages = searchQuery.trim()
+    ? SEARCHABLE_PAGES.filter((page) => {
+        const query = searchQuery.toLowerCase();
+        return (
+          page.title.toLowerCase().includes(query) ||
+          page.category.toLowerCase().includes(query) ||
+          page.tags.toLowerCase().includes(query)
+        );
+      }).slice(0, 8)
+    : SEARCHABLE_PAGES.slice(0, 5);
+
 
   const isActive = (href: string) => pathname === href;
   const isActivePrefix = (prefix: string) =>
@@ -137,6 +215,18 @@ export default function Navbar() {
             }`}
           >
             Home
+          </Link>
+
+          {/* Kindergarten */}
+          <Link
+            href="/kindergarten"
+            className={`px-2 py-1.5 rounded-lg text-[11.5px] font-bold transition-all duration-200 inline-flex items-center gap-1 ${
+              isActivePrefix("/kindergarten")
+                ? "bg-green-600 !text-white shadow-sm font-extrabold"
+                : "text-green-700 hover:bg-green-50 hover:text-green-800 font-extrabold"
+            }`}
+          >
+            <span>🌴</span> Kindergarten
           </Link>
 
           {/* About Us */}
@@ -350,7 +440,8 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#f5f5f5] flex items-center justify-center hover:bg-[#e5e5e5] transition text-[#111111] focus:outline-none"
+            onClick={() => setIsSearchOpen(true)}
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#f5f5f5] flex items-center justify-center hover:bg-[#e5e5e5] transition text-[#111111] focus:outline-none cursor-pointer"
             aria-label="Search"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -388,6 +479,18 @@ export default function Navbar() {
             }`}
           >
             Home
+          </Link>
+
+          {/* Kindergarten */}
+          <Link
+            href="/kindergarten"
+            className={`flex items-center gap-2 px-4 py-3 rounded-xl font-bold transition ${
+              isActivePrefix("/kindergarten")
+                ? "bg-green-600 !text-white font-extrabold"
+                : "text-green-700 hover:bg-green-50 font-extrabold"
+            }`}
+          >
+            <span>🌴</span> Kindergarten
           </Link>
 
           {/* About Us */}
@@ -545,6 +648,82 @@ export default function Navbar() {
           </Link>
         </div>
       </nav>
+
+      {/* ── Search Modal Overlay ── */}
+      {isSearchOpen && (
+        <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[12vh] px-4">
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-slate-950/45 backdrop-blur-sm transition-opacity"
+            onClick={() => {
+              setIsSearchOpen(false);
+              setSearchQuery("");
+            }}
+          />
+          
+          {/* Modal Box */}
+          <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-100/90 flex flex-col overflow-hidden max-h-[65vh]">
+            {/* Input box */}
+            <div className="p-4 border-b border-slate-100 flex items-center gap-3 bg-slate-50/50">
+              <svg className="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                ref={searchInputRef}
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search pages (e.g. Admission, Fees, Contact)..."
+                className="w-full bg-transparent border-none text-[14px] text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-0 py-1"
+              />
+              <button 
+                onClick={() => {
+                  setIsSearchOpen(false);
+                  setSearchQuery("");
+                }}
+                className="text-[10px] font-bold text-slate-400 hover:text-slate-600 transition bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded"
+              >
+                ESC
+              </button>
+            </div>
+
+            {/* Results box */}
+            <div className="overflow-y-auto p-2 flex flex-col gap-1 min-h-[160px]">
+              {filteredPages.length > 0 ? (
+                filteredPages.map((page) => (
+                  <Link
+                    key={page.href}
+                    href={page.href}
+                    onClick={() => {
+                      setIsSearchOpen(false);
+                      setSearchQuery("");
+                    }}
+                    className="flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-slate-50 transition-colors group text-left"
+                  >
+                    <div className="flex flex-col">
+                      <span className="text-[13px] font-semibold text-slate-800 group-hover:text-[var(--brand-primary)] transition-colors">
+                        {page.title}
+                      </span>
+                      <span className="text-[11px] text-slate-400 font-medium">
+                        {page.category}
+                      </span>
+                    </div>
+                    <svg className="w-4 h-4 text-slate-300 group-hover:text-[var(--brand-primary)] group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </Link>
+                ))
+              ) : (
+                <div className="py-8 px-4 text-center flex flex-col items-center justify-center gap-2">
+                  <span className="text-2xl">🔍</span>
+                  <span className="text-[13px] font-medium text-slate-500">No results found for &quot;{searchQuery}&quot;</span>
+                  <span className="text-[11px] text-slate-400">Try searching for &quot;Admission&quot;, &quot;Fees&quot;, &quot;Lab&quot;, or &quot;Kindergarten&quot;</span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
