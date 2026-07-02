@@ -162,8 +162,8 @@ export default function KindergartenPage() {
 
         /* ANIMAL ANIMATIONS */
         @keyframes monkeySwing {
-          0%, 100% { transform: rotate(-15deg); }
-          50% { transform: rotate(15deg); }
+          0%, 100% { transform: rotate(-25deg); }
+          50% { transform: rotate(25deg); }
         }
         @keyframes walk {
           0%, 100% { transform: translateY(0px); }
@@ -226,29 +226,33 @@ export default function KindergartenPage() {
         /* SWINGING MONKEY DECOR */
         .monkey-swing-container {
           position: fixed;
-          top: 75px;
+          top: 60px;
           left: 10px;
           z-index: 40;
           pointer-events: none;
           transform: scale(0.65);
           transform-origin: top left;
+          transition: transform 0.3s ease;
+        }
+        .monkey-swing-container:hover {
+          transform: scale(0.7);
         }
         @media (min-width: 1024px) {
           .monkey-swing-container {
-            top: 85px;
+            top: 68px;
             left: 30px;
             transform: scale(1.1);
+            transform-origin: top left;
+          }
+          .monkey-swing-container:hover {
+            transform: scale(1.15);
           }
         }
         .monkey-swing-wrapper {
           pointer-events: auto;
           cursor: pointer;
-          animation: monkeySwing 3s ease-in-out infinite;
+          animation: monkeySwing 3.5s ease-in-out infinite;
           transform-origin: 50% 0;
-          transition: transform 0.3s ease;
-        }
-        .monkey-swing-wrapper:hover {
-          transform: scale(1.05);
         }
         .monkey-swing-wrapper:active {
           transform: scale(0.95);
