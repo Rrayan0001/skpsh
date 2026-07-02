@@ -3,10 +3,21 @@
 import { useEffect, useState } from "react";
 
 export default function WelcomeAnimation() {
+  const [isClient, setIsClient] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+
+    if (typeof window !== "undefined") {
+      const hasPlayed = sessionStorage.getItem("hasPlayedWelcomeAnimation");
+      if (hasPlayed === "true") {
+        setIsFinished(true);
+        return;
+      }
+    }
+
     // Disable body scroll when animation starts
     document.body.style.overflow = "hidden";
 
@@ -19,6 +30,9 @@ export default function WelcomeAnimation() {
     const finishTimer = setTimeout(() => {
       setIsFinished(true);
       document.body.style.overflow = "";
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("hasPlayedWelcomeAnimation", "true");
+      }
     }, 2600);
 
     return () => {
@@ -33,10 +47,13 @@ export default function WelcomeAnimation() {
     setTimeout(() => {
       setIsFinished(true);
       document.body.style.overflow = "";
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("hasPlayedWelcomeAnimation", "true");
+      }
     }, 500); // match exit transition duration
   };
 
-  if (isFinished) return null;
+  if (!isClient || isFinished) return null;
 
   return (
     <div
