@@ -8,7 +8,13 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Close mobile menu on route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   // Auto-focus search input when opened
   useEffect(() => {
@@ -162,7 +168,13 @@ export default function Navbar() {
       </div>
 
       {/* Hamburger toggle */}
-      <input type="checkbox" id="mobile-menu-toggle" className="peer sr-only" />
+      <input
+        type="checkbox"
+        id="mobile-menu-toggle"
+        className="peer sr-only"
+        checked={isMobileMenuOpen}
+        onChange={(e) => setIsMobileMenuOpen(e.target.checked)}
+      />
 
       {/* Top bar — full-width on lg, capped at 2xl on very large screens */}
       <div className="w-full px-4 sm:px-5 lg:px-6 h-16 sm:h-18 flex items-center justify-between gap-2">
@@ -460,20 +472,57 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Backdrop overlay for mobile drawer */}
+      <label
+        htmlFor="mobile-menu-toggle"
+        className="fixed inset-0 z-[90] bg-slate-950/40 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300 peer-checked:opacity-100 peer-checked:pointer-events-auto lg:hidden"
+      />
+
       {/* ── Mobile Drawer ── */}
       <nav
         className="
-          lg:hidden overflow-hidden
-          max-h-0 peer-checked:max-h-[85vh] peer-checked:overflow-y-auto
-          transition-[max-height] duration-300 ease-in-out
-          bg-white/95 backdrop-blur-lg border-t border-slate-100/80 shadow-md
+          lg:hidden fixed top-0 right-0 bottom-0 z-[100]
+          w-[80vw] max-w-[300px] h-screen bg-white shadow-2xl flex flex-col
+          translate-x-full peer-checked:translate-x-0
+          transition-transform duration-300 ease-in-out
         "
       >
-        <div className="flex flex-col px-5 py-4 gap-0.5 text-[var(--brand-ink)] font-semibold text-[15px]">
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 bg-slate-50/50 shrink-0">
+          <div className="flex items-center gap-2">
+            <img
+              src="/favicon_io/bg_removed_logo.png"
+              alt="School Logo"
+              className="h-8 w-auto object-contain"
+            />
+            <div className="flex flex-col text-left">
+              <span className="text-[12px] font-extrabold leading-tight tracking-tight text-[var(--brand-ink)]">
+                SK Public School
+              </span>
+              <span className="text-[8px] font-semibold leading-none tracking-wide text-[var(--brand-primary)]">
+                Hukkeri
+              </span>
+            </div>
+          </div>
+          
+          <label
+            htmlFor="mobile-menu-toggle"
+            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center cursor-pointer text-slate-500 hover:text-slate-700 transition"
+            aria-label="Close menu"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </label>
+        </div>
+
+        {/* Drawer Links */}
+        <div className="flex-1 overflow-y-auto px-5 py-4 flex flex-col gap-0.5 text-[var(--brand-ink)] font-semibold text-[15px]">
 
           {/* Home */}
           <Link
             href="/"
+            onClick={() => setIsMobileMenuOpen(false)}
             className={`flex items-center gap-2 px-4 py-3 rounded-xl font-bold transition ${
               isActive("/") ? "bg-[var(--brand-primary)] !text-white" : "hover:bg-slate-50"
             }`}
@@ -484,6 +533,7 @@ export default function Navbar() {
           {/* Kindergarten */}
           <Link
             href="/kindergarten"
+            onClick={() => setIsMobileMenuOpen(false)}
             className={`flex items-center gap-2 px-4 py-3 rounded-xl font-bold transition ${
               isActivePrefix("/kindergarten")
                 ? "bg-green-600 !text-white font-extrabold"
@@ -500,14 +550,14 @@ export default function Navbar() {
               {chevronDownMobile}
             </summary>
             <div className="pl-6 pr-4 py-1.5 flex flex-col gap-0.5 border-l-2 border-[var(--brand-primary-light)] ml-4">
-              <Link href="/about/about-school" className={mobileLink}>About the School</Link>
-              <Link href="/about/vision-mission" className={mobileLink}>Vision &amp; Mission</Link>
-              <Link href="/about/chairmans-message" className={mobileLink}>Chairman&apos;s Message</Link>
-              <Link href="/about/principals-message" className={mobileLink}>Principal&apos;s Message</Link>
-              <Link href="/about/secretarys-message" className={mobileLink}>Secretary&apos;s Message</Link>
-              <Link href="/about/school-management" className={mobileLink}>School Management</Link>
-              <Link href="/about/visiting-hours" className={mobileLink}>Visiting Hours</Link>
-              <Link href="/about/school-timing" className={mobileLink}>School Timing</Link>
+              <Link href="/about/about-school" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>About the School</Link>
+              <Link href="/about/vision-mission" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Vision &amp; Mission</Link>
+              <Link href="/about/chairmans-message" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Chairman&apos;s Message</Link>
+              <Link href="/about/principals-message" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Principal&apos;s Message</Link>
+              <Link href="/about/secretarys-message" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Secretary&apos;s Message</Link>
+              <Link href="/about/school-management" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>School Management</Link>
+              <Link href="/about/visiting-hours" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Visiting Hours</Link>
+              <Link href="/about/school-timing" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>School Timing</Link>
             </div>
           </details>
 
@@ -518,10 +568,10 @@ export default function Navbar() {
               {chevronDownMobile}
             </summary>
             <div className="pl-6 pr-4 py-1.5 flex flex-col gap-0.5 border-l-2 border-[var(--brand-primary-light)] ml-4">
-              <Link href="/admission/procedure" className={mobileLink}>Admission Procedure</Link>
-              <Link href="/students-corner/achievements" className={mobileLink}>Achievements</Link>
-              <Link href="/students-corner/assembly" className={mobileLink}>Assembly</Link>
-              <Link href="/students-corner/birthday-celebrations" className={mobileLink}>Birth Day Celebrations</Link>
+              <Link href="/admission/procedure" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Admission Procedure</Link>
+              <Link href="/students-corner/achievements" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Achievements</Link>
+              <Link href="/students-corner/assembly" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Assembly</Link>
+              <Link href="/students-corner/birthday-celebrations" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Birth Day Celebrations</Link>
             </div>
           </details>
 
@@ -532,13 +582,13 @@ export default function Navbar() {
               {chevronDownMobile}
             </summary>
             <div className="pl-6 pr-4 py-1.5 flex flex-col gap-0.5 border-l-2 border-[var(--brand-primary-light)] ml-4">
-              <Link href="/kindergarten" className={mobileLink}>KG (Kindergarten)</Link>
-              <Link href="/academics/academic-calendar" className={mobileLink}>Academic Calendar</Link>
-              <Link href="/academics/curriculum" className={mobileLink}>Curriculum</Link>
-              <Link href="/academics/transfer-certificate" className={mobileLink}>Transfer Certificate</Link>
-              <Link href="/academics/time-table" className={mobileLink}>Academic Time Table</Link>
-              <Link href="/academics/homework-policy" className={mobileLink}>Home Work Policy</Link>
-              <Link href="/academics/staff-details" className={mobileLink}>Staff Details</Link>
+              <Link href="/kindergarten" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>KG (Kindergarten)</Link>
+              <Link href="/academics/academic-calendar" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Academic Calendar</Link>
+              <Link href="/academics/curriculum" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Curriculum</Link>
+              <Link href="/academics/transfer-certificate" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Transfer Certificate</Link>
+              <Link href="/academics/time-table" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Academic Time Table</Link>
+              <Link href="/academics/homework-policy" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Home Work Policy</Link>
+              <Link href="/academics/staff-details" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Staff Details</Link>
             </div>
           </details>
 
@@ -549,11 +599,11 @@ export default function Navbar() {
               {chevronDownMobile}
             </summary>
             <div className="pl-6 pr-4 py-1.5 flex flex-col gap-0.5 border-l-2 border-[var(--brand-primary-light)] ml-4">
-              <Link href="/examination/syllabus" className={mobileLink}>Syllabus</Link>
-              <Link href="/examination/exam-time-table" className={mobileLink}>Exam Time Table</Link>
-              <Link href="/examination/parents-squad" className={mobileLink}>Parent&apos;s Squad</Link>
-              <Link href="/examination/model-question-papers" className={mobileLink}>Model Question Papers</Link>
-              <Link href="/examination/examination-circulars" className={mobileLink}>Examination Circulars</Link>
+              <Link href="/examination/syllabus" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Syllabus</Link>
+              <Link href="/examination/exam-time-table" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Exam Time Table</Link>
+              <Link href="/examination/parents-squad" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Parent&apos;s Squad</Link>
+              <Link href="/examination/model-question-papers" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Model Question Papers</Link>
+              <Link href="/examination/examination-circulars" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Examination Circulars</Link>
             </div>
           </details>
 
@@ -564,13 +614,13 @@ export default function Navbar() {
               {chevronDownMobile}
             </summary>
             <div className="pl-6 pr-4 py-1.5 flex flex-col gap-0.5 border-l-2 border-[var(--brand-primary-light)] ml-4">
-              <Link href="/facilities/science-lab" className={mobileLink}>Science Lab</Link>
-              <Link href="/facilities/chemistry-lab" className={mobileLink}>Chemistry Lab</Link>
-              <Link href="/facilities/computer-lab" className={mobileLink}>Computer Lab</Link>
-              <Link href="/facilities/library" className={mobileLink}>Library</Link>
-              <Link href="/facilities/sports-ground" className={mobileLink}>Sports Ground</Link>
-              <Link href="/facilities/art-craft" className={mobileLink}>Art &amp; Craft (Drawing)</Link>
-              <Link href="/facilities/dance-classes" className={mobileLink}>Dance Classes (Grade I–III)</Link>
+              <Link href="/facilities/science-lab" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Science Lab</Link>
+              <Link href="/facilities/chemistry-lab" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Chemistry Lab</Link>
+              <Link href="/facilities/computer-lab" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Computer Lab</Link>
+              <Link href="/facilities/library" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Library</Link>
+              <Link href="/facilities/sports-ground" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Sports Ground</Link>
+              <Link href="/facilities/art-craft" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Art &amp; Craft (Drawing)</Link>
+              <Link href="/facilities/dance-classes" onClick={() => setIsMobileMenuOpen(false)} className={mobileLink}>Dance Classes (Grade I–III)</Link>
             </div>
           </details>
 
@@ -590,8 +640,8 @@ export default function Navbar() {
                   </svg>
                 </summary>
                 <div className="pl-4 py-1 flex flex-col gap-0.5 border-l border-slate-200 ml-2">
-                  <Link href="/cultural-activities/cca/2025-26" className="py-1.5 text-[13px] hover:text-[var(--brand-primary)] transition font-medium">2025-26</Link>
-                  <Link href="/cultural-activities/cca/2026-27" className="py-1.5 text-[13px] hover:text-[var(--brand-primary)] transition font-medium">2026-27</Link>
+                  <Link href="/cultural-activities/cca/2025-26" onClick={() => setIsMobileMenuOpen(false)} className="py-1.5 text-[13px] hover:text-[var(--brand-primary)] transition font-medium">2025-26</Link>
+                  <Link href="/cultural-activities/cca/2026-27" onClick={() => setIsMobileMenuOpen(false)} className="py-1.5 text-[13px] hover:text-[var(--brand-primary)] transition font-medium">2026-27</Link>
                 </div>
               </details>
               {/* Events sub */}
@@ -603,8 +653,8 @@ export default function Navbar() {
                   </svg>
                 </summary>
                 <div className="pl-4 py-1 flex flex-col gap-0.5 border-l border-slate-200 ml-2">
-                  <Link href="/cultural-activities/events/2025-26" className="py-1.5 text-[13px] hover:text-[var(--brand-primary)] transition font-medium">2025-26</Link>
-                  <Link href="/cultural-activities/events/2026-27" className="py-1.5 text-[13px] hover:text-[var(--brand-primary)] transition font-medium">2026-27</Link>
+                  <Link href="/cultural-activities/events/2025-26" onClick={() => setIsMobileMenuOpen(false)} className="py-1.5 text-[13px] hover:text-[var(--brand-primary)] transition font-medium">2025-26</Link>
+                  <Link href="/cultural-activities/events/2026-27" onClick={() => setIsMobileMenuOpen(false)} className="py-1.5 text-[13px] hover:text-[var(--brand-primary)] transition font-medium">2026-27</Link>
                 </div>
               </details>
             </div>
@@ -613,6 +663,7 @@ export default function Navbar() {
           {/* Mandatory Disclosure */}
           <Link
             href="/mandatory-disclosure"
+            onClick={() => setIsMobileMenuOpen(false)}
             className={`flex items-center gap-2 px-4 py-3 rounded-xl transition ${
               isActivePrefix("/mandatory-disclosure")
                 ? "bg-[var(--brand-primary-soft)] text-[var(--brand-primary)] font-bold"
@@ -622,10 +673,10 @@ export default function Navbar() {
             Mandatory Disclosure
           </Link>
 
-
           {/* Sports */}
           <Link
             href="/sports"
+            onClick={() => setIsMobileMenuOpen(false)}
             className={`flex items-center gap-2 px-4 py-3 rounded-xl transition ${
               isActivePrefix("/sports")
                 ? "bg-[var(--brand-primary-soft)] text-[var(--brand-primary)] font-bold"
@@ -638,6 +689,7 @@ export default function Navbar() {
           {/* Contact Us */}
           <Link
             href="/contact"
+            onClick={() => setIsMobileMenuOpen(false)}
             className={`flex items-center gap-2 px-4 py-3 rounded-xl transition ${
               isActivePrefix("/contact")
                 ? "bg-[var(--brand-primary-soft)] text-[var(--brand-primary)] font-bold"
