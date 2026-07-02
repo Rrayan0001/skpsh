@@ -20,24 +20,59 @@ export default function KindergartenPage() {
   const treesForeRef = useRef<HTMLDivElement>(null);
   const treesBackRef = useRef<HTMLDivElement>(null);
   const trailDotsRef = useRef<HTMLDivElement>(null);
+  const monkeyWrapperRef = useRef<HTMLDivElement>(null);
+  const lastScrollYRef = useRef(0);
+  const monkeyRotationRef = useRef(0);
+  const monkeyRafRef = useRef<number | null>(null);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // Optimized Scroll Event Handling
+  // Scroll-driven monkey swing (spring physics)
   useEffect(() => {
     if (!isClient) return;
 
+    const SPRING_STIFFNESS = 0.08;
+    const DAMPING = 0.75;
+    let targetRotation = 0;
+    let currentRotation = 0;
+    let velocity = 0;
+
+    const animateMonkey = () => {
+      const diff = targetRotation - currentRotation;
+      velocity = velocity * DAMPING + diff * SPRING_STIFFNESS;
+      currentRotation += velocity;
+
+      // Clamp to max ±35 degrees
+      currentRotation = Math.max(-35, Math.min(35, currentRotation));
+
+      if (monkeyWrapperRef.current) {
+        monkeyWrapperRef.current.style.transform = `rotate(${currentRotation}deg)`;
+      }
+
+      // Decay target back toward zero when no scroll
+      targetRotation *= 0.92;
+
+      monkeyRafRef.current = requestAnimationFrame(animateMonkey);
+    };
+
+    monkeyRafRef.current = requestAnimationFrame(animateMonkey);
+
     const handleScroll = () => {
       const sy = window.scrollY;
+      const scrollDelta = sy - lastScrollYRef.current;
+      lastScrollYRef.current = sy;
+
+      // Map scroll delta to target rotation: scrolling down = swing right, up = swing left
+      targetRotation = Math.max(-35, Math.min(35, targetRotation + scrollDelta * 0.8));
+
       const totalHeight = pageRef.current?.scrollHeight || 5000;
       const viewHeight = window.innerHeight;
       const maxScroll = Math.max(totalHeight - viewHeight, 1);
       const scrollPercent = Math.min(sy / maxScroll, 1);
 
-
-      // 2. Parallax Effects for Clouds (Only on larger screens or screens with good performance)
+      // Parallax Effects for Clouds (Only on larger screens)
       const isMobile = window.innerWidth < 1024;
       if (!isMobile) {
         if (cloud1Ref.current) {
@@ -49,7 +84,6 @@ export default function KindergartenPage() {
         if (cloud3Ref.current) {
           cloud3Ref.current.style.transform = `translateY(${sy * 0.08}px) translateX(${-sy * 0.03}px)`;
         }
-        // Parallax Trees
         if (treesForeRef.current) {
           treesForeRef.current.style.transform = `translateY(${sy * 0.3}px)`;
         }
@@ -57,7 +91,6 @@ export default function KindergartenPage() {
           treesBackRef.current.style.transform = `translateY(${sy * 0.1}px)`;
         }
       } else {
-        // Clear transforms on mobile to avoid lag/jitter
         if (cloud1Ref.current) cloud1Ref.current.style.transform = "none";
         if (cloud2Ref.current) cloud2Ref.current.style.transform = "none";
         if (cloud3Ref.current) cloud3Ref.current.style.transform = "none";
@@ -65,7 +98,7 @@ export default function KindergartenPage() {
         if (treesBackRef.current) treesBackRef.current.style.transform = "none";
       }
 
-      // 3. Update active state of trail progress dots
+      // Update trail progress dots
       if (trailDotsRef.current) {
         const totalDots = 7;
         const activeIndex = Math.floor(scrollPercent * totalDots);
@@ -78,14 +111,15 @@ export default function KindergartenPage() {
           }
         });
       }
-
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    // Trigger once to align positions
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (monkeyRafRef.current) cancelAnimationFrame(monkeyRafRef.current);
+    };
   }, [isClient]);
 
   return (
@@ -226,36 +260,36 @@ export default function KindergartenPage() {
         /* SWINGING MONKEY DECOR */
         .monkey-swing-container {
           position: fixed;
-          top: 60px;
-          left: 10px;
+          top: 58px;
+          left: 4px;
           z-index: 40;
           pointer-events: none;
-          transform: scale(0.65);
+          /* Visible size on mobile: scale 1.0 = full 100px SVG */
+          transform: scale(1.0);
           transform-origin: top left;
-          transition: transform 0.3s ease;
         }
-        .monkey-swing-container:hover {
-          transform: scale(0.7);
+        @media (min-width: 640px) {
+          .monkey-swing-container {
+            top: 62px;
+            left: 12px;
+            transform: scale(1.1);
+          }
         }
         @media (min-width: 1024px) {
           .monkey-swing-container {
             top: 68px;
             left: 30px;
-            transform: scale(1.1);
+            transform: scale(1.25);
             transform-origin: top left;
-          }
-          .monkey-swing-container:hover {
-            transform: scale(1.15);
           }
         }
         .monkey-swing-wrapper {
           pointer-events: auto;
           cursor: pointer;
-          animation: monkeySwing 3.5s ease-in-out infinite;
+          /* transform-origin at top-center so rotation swings from the vine anchor */
           transform-origin: 50% 0;
-        }
-        .monkey-swing-wrapper:active {
-          transform: scale(0.95);
+          transform: rotate(0deg);
+          will-change: transform;
         }
 
         /* SECTION TITLE */
@@ -499,7 +533,7 @@ export default function KindergartenPage() {
       {/* ── SWINGING MONKEY (fixed, responsive) ── */}
       {isClient && (
         <div className="monkey-swing-container">
-          <div className="monkey-swing-wrapper">
+          <div className="monkey-swing-wrapper" ref={monkeyWrapperRef}>
             <MonkeySVG />
           </div>
         </div>
