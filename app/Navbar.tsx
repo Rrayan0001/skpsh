@@ -149,7 +149,7 @@ export default function Navbar() {
   );
 
   return (
-    <header className="w-full sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100/80 transition-all duration-200">
+    <header className="w-full fixed top-0 left-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100/80 transition-all duration-200">
       {/* Top Banner / Info Bar */}
       <div className="w-full bg-[var(--brand-primary)] text-white text-[10px] sm:text-[11.5px] font-medium py-1.5 px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-4 border-b border-blue-900/10 shrink-0">
         <div className="flex items-center gap-1.5 text-center sm:text-left">

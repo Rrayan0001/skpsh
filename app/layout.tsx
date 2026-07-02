@@ -46,7 +46,7 @@ export default function RootLayout({
         {/* ── NAVBAR ─────────────────────────────────────────────── */}
         <Navbar />
 
-        <main className="w-full flex flex-col">
+        <main className="w-full flex flex-col pt-[108px] sm:pt-[100px]">
           {children}
         </main>
 
