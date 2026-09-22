@@ -4,56 +4,79 @@ const documents = [
   {
     title: "Affiliation Letter",
     href: "/mandatory-disclosure/affiliation-letter",
+    pdf: "/md2026/affiliation-recognition-2022-27.pdf",
     icon: "🏫",
   },
   {
     title: "Society/Trust Registration Certificate",
     href: "/mandatory-disclosure/society-trust-registration",
+    pdf: null,
     icon: "📜",
   },
   {
-    title: "Society/Trust Bay Laws",
+    title: "Society/Trust Bye Laws",
     href: "/mandatory-disclosure/society-trust-bye-laws",
+    pdf: null,
     icon: "📋",
   },
   {
     title: "School Management Committee (SMC)",
     href: "/mandatory-disclosure/smc",
+    pdf: "/md2026/smc-managing-committee-2026-27.pdf",
     icon: "🏛️",
   },
   {
     title: "Parents Teacher Association (PTA)",
     href: "/mandatory-disclosure/pta",
+    pdf: null,
     icon: "🤝",
   },
   {
     title: "NOC (No Objection Certificate)",
     href: "/mandatory-disclosure/noc",
+    pdf: "/md2026/noc-karnataka-2019.pdf",
     icon: "✅",
   },
   {
     title: "Recognition Certificate",
     href: "/mandatory-disclosure/recognition-certificate",
+    pdf: "/md2026/affiliation-recognition-2022-27.pdf",
     icon: "🎖️",
   },
   {
     title: "Building Safety Certificate",
     href: "/mandatory-disclosure/building-safety",
+    pdf: "/md2026/building-safety-certificate-2026.pdf",
     icon: "🏗️",
   },
   {
     title: "Fire Safety Certificate",
     href: "/mandatory-disclosure/fire-safety",
+    pdf: null,
     icon: "🔥",
   },
   {
     title: "Water, Health & Sanitation Certificate",
     href: "/mandatory-disclosure/water-health-sanitation",
+    pdf: "/md2026/water-health-sanitation-2026-27.pdf",
     icon: "💧",
+  },
+  {
+    title: "School Strength 2026-27",
+    href: "/mandatory-disclosure/students",
+    pdf: "/md2026/school-strength-2026-27.pdf",
+    icon: "🎒",
+  },
+  {
+    title: "Staff Details 2026-27",
+    href: "/academics/staff-details",
+    pdf: "/md2026/staff-details-2026-27.pdf",
+    icon: "👩‍🏫",
   },
   {
     title: "Annual Report",
     href: "/mandatory-disclosure/annual-report",
+    pdf: null,
     icon: "📊",
   },
 ];
@@ -101,6 +124,16 @@ export default function MandatoryDisclosurePage() {
                 <p className="text-[13.5px] font-semibold text-[var(--hp-ink)] leading-snug group-hover:text-[var(--brand-primary)] transition-colors duration-200">
                   {doc.title}
                 </p>
+                {doc.pdf ? (
+                  <p className="mt-1.5 inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10.5px] font-bold text-emerald-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                    PDF available
+                  </p>
+                ) : (
+                  <p className="mt-1.5 inline-flex items-center gap-1 rounded-full bg-slate-100 border border-slate-200 px-2 py-0.5 text-[10.5px] font-bold text-slate-500">
+                    Coming soon
+                  </p>
+                )}
                 <p className="mt-1 text-[11px] font-medium text-slate-400 group-hover:text-[var(--brand-primary)] transition-colors duration-200 flex items-center gap-1">
                   View document
                   <svg className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
