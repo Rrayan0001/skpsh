@@ -28,7 +28,7 @@ const documents = [
   {
     title: "Parents Teacher Association (PTA)",
     href: "/mandatory-disclosure/pta",
-    pdf: null,
+    pdf: "/md2026/pta-2026-27.pdf",
     icon: "🤝",
   },
   {
@@ -52,7 +52,7 @@ const documents = [
   {
     title: "Fire Safety Certificate",
     href: "/mandatory-disclosure/fire-safety",
-    pdf: null,
+    pdf: "/md2026/fire-safety-recommendation-2025.pdf",
     icon: "🔥",
   },
   {
