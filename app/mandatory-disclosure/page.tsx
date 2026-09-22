@@ -14,15 +14,9 @@ const documents = [
     icon: "📜",
   },
   {
-    title: "Society/Trust Bye Laws",
-    href: "/mandatory-disclosure/society-trust-bye-laws",
-    pdf: null,
-    icon: "📋",
-  },
-  {
     title: "School Management Committee (SMC)",
     href: "/mandatory-disclosure/smc",
-    pdf: "/md2026/smc-managing-committee-2026-27.pdf",
+    pdf: "/md2026/smc-2026-27.pdf",
     icon: "🏛️",
   },
   {
@@ -69,15 +63,21 @@ const documents = [
   },
   {
     title: "Staff Details 2026-27",
-    href: "/academics/staff-details",
+    href: "/mandatory-disclosure/staff-details",
     pdf: "/md2026/staff-details-2026-27.pdf",
     icon: "👩‍🏫",
   },
   {
-    title: "Annual Report",
-    href: "/mandatory-disclosure/annual-report",
-    pdf: null,
-    icon: "📊",
+    title: "Academic Calendar 2026-27",
+    href: "/mandatory-disclosure/academic-calendar",
+    pdf: "/md2026/academic-calendar-2026-27.pdf",
+    icon: "🗓️",
+  },
+  {
+    title: "Fees Structure 2026-27",
+    href: "/mandatory-disclosure/fee-structure",
+    pdf: "/md2026/fee-details-2026-27.pdf",
+    icon: "💰",
   },
 ];
 
