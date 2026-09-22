@@ -10,7 +10,7 @@ const documents = [
   {
     title: "Society/Trust Registration Certificate",
     href: "/mandatory-disclosure/society-trust-registration",
-    pdf: null,
+    pdf: "/md2026/society-trust-registration-1953.pdf",
     icon: "📜",
   },
   {
