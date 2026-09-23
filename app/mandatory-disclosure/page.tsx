@@ -79,6 +79,18 @@ const documents = [
     pdf: "/md2026/fee-details-2026-27.pdf",
     icon: "💰",
   },
+  {
+    title: "Certificate of Land",
+    href: "/mandatory-disclosure/land-certificate",
+    pdf: "/md2026/land-certificate-2015.pdf",
+    icon: "🗺️",
+  },
+  {
+    title: "Class X Results — Last 3 Years",
+    href: "/mandatory-disclosure/class-x-results",
+    pdf: "/md2026/class-x-results-2023-25.pdf",
+    icon: "🏆",
+  },
 ];
 
 export default function MandatoryDisclosurePage() {

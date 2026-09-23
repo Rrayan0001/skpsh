@@ -4,12 +4,13 @@ export default function Page() {
   return (
     <DisclosureDocument
       title="Building Safety Certificate"
-      description="Safety / stability certificate for the existing school building issued by the Public Works Department, Hukkeri Sub-Division, Government of Karnataka."
+      description="Building Safety Certificate for Sri Kadasiddheshwar Public School, Hukkeri — inspected by PWD and certified fit for occupancy for running the school for a period of 2 years."
       pdfUrl="/md2026/building-safety-certificate-2026.pdf"
       fileLabel="skpsh/md2026/building-safety-certificate-2026.pdf"
       meta={[
-        { label: "Issued by", value: "PWD, Hukkeri" },
+        { label: "Certificate No", value: "462" },
         { label: "Dated", value: "27-07-2026" },
+        { label: "Valid", value: "2 years" },
       ]}
     />
   );
