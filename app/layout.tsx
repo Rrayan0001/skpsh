@@ -102,8 +102,7 @@ export default function RootLayout({
                   {[
                     { name: "About Us", href: "/under-construction" },
                     { name: "Admissions", href: "/under-construction" },
-                    { name: "News & Events", href: "/under-construction" },
-                    { name: "Mandatory Public Disclosure", href: "/under-construction" }
+                    { name: "News & Events", href: "/under-construction" }
                   ].map((item) => (
                     <li key={item.name}>
                       <Link href={item.href} className="group text-sm text-slate-400 hover:text-white transition-colors duration-200 flex items-center gap-1">

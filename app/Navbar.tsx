@@ -74,8 +74,6 @@ export default function Navbar() {
     { title: "Dance Classes (Grade I–III)", href: "/facilities/dance-classes", category: "Facilities", tags: "music steps classical folk junior extra-curricular expression" },
     { title: "Sports & Games", href: "/sports", category: "General", tags: "p.e. physical education yoga athletics track indoor outdoor games" },
     { title: "Contact Us", href: "/contact", category: "General", tags: "address phone mobile email principal vice-principal maps query location" },
-    { title: "Mandatory Public Disclosure", href: "/mandatory-disclosure", category: "Disclosure", tags: "cbse requirements rules building fire safety noc smc water certificate" },
-    { title: "Annual Report", href: "/mandatory-disclosure/annual-report", category: "Disclosure", tags: "report progress details achievement results annual board" },
   ];
 
   const filteredPages = searchQuery.trim()
@@ -99,10 +97,6 @@ export default function Navbar() {
   const activeStyle = "text-[var(--brand-primary)]";
   const inactiveStyle =
     "text-[var(--brand-ink)] hover:text-[var(--brand-primary)]";
-
-  const activeBar = (
-    <span className="absolute -bottom-1 left-0 right-0 h-[2.5px] rounded-full bg-[var(--brand-primary)] animate-[fadeIn_200ms_ease]" />
-  );
 
   /* Reusable desktop dropdown wrapper */
   const dropdownItem =
@@ -412,17 +406,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mandatory Disclosure */}
-          <Link
-            href="/mandatory-disclosure"
-            className={`relative px-2 ${linkBase} whitespace-nowrap ${
-              isActivePrefix("/mandatory-disclosure") ? activeStyle : inactiveStyle
-            }`}
-          >
-            Mandatory Disclosure
-            {isActivePrefix("/mandatory-disclosure") && activeBar}
-          </Link>
-
           {/* Sports */}
           <Link
             href="/sports"
@@ -659,19 +642,6 @@ export default function Navbar() {
               </details>
             </div>
           </details>
-
-          {/* Mandatory Disclosure */}
-          <Link
-            href="/mandatory-disclosure"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className={`flex items-center gap-2 px-4 py-3 rounded-xl transition ${
-              isActivePrefix("/mandatory-disclosure")
-                ? "bg-[var(--brand-primary-soft)] text-[var(--brand-primary)] font-bold"
-                : "hover:bg-slate-50"
-            }`}
-          >
-            Mandatory Disclosure
-          </Link>
 
           {/* Sports */}
           <Link
